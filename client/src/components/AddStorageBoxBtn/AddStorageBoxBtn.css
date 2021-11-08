@@ -14,12 +14,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: 1s ease-in-out;
+  transition: .2s ease-in-out;
 }
 .plus:hover {
   cursor: pointer;
-  top: 0%;
-  transition: 1s ease-in-out;
+  top: 45%;
+  transition: .2s ease-in-out;
 }
 
 .plus-vertical-line {
@@ -31,11 +31,11 @@
   height: 100px;
   background: black;
 }
-.plus-vertical-line:hover {
+/* .plus-vertical-line:hover {
   cursor: progress;
   top: 200px;
   transition: 1s ease-in-out;
-}
+} */
 
 .plus-horizontal-line {
   position: absolute;
