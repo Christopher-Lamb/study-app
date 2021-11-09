@@ -1,0 +1,19 @@
+.storageBox {
+  box-sizing: border-box;
+  border: 1px solid black;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  margin: 10px;
+  border-radius: 5%;
+  transition: 0.2s ease-in-out;
+  position: relative;
+  padding: 20px;
+}
+
+.storageBox:hover {
+  height: 210px;
+  width: 210px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}

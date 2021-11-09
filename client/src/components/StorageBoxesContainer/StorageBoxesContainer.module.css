@@ -1,4 +1,12 @@
-.add-storage-box-btn {
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.btn {
   border: 1px solid black;
   height: 200px;
   width: 200px;
@@ -14,15 +22,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 .plus:hover {
   cursor: pointer;
   top: 45%;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
-.plus-vertical-line {
+.verticalLine {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -31,13 +39,8 @@
   height: 100px;
   background: black;
 }
-/* .plus-vertical-line:hover {
-  cursor: progress;
-  top: 200px;
-  transition: 1s ease-in-out;
-} */
 
-.plus-horizontal-line {
+.horizontalLine {
   position: absolute;
   top: 50%;
   left: 50%;

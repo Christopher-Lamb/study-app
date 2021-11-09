@@ -1,4 +1,4 @@
-.add-storage-box-popup {
+.container {
   height: 60vh;
   width: 60vw;
   max-width: 375px;
@@ -6,18 +6,19 @@
   background: white;
   border: 1px black solid;
   position: absolute;
+  z-index: 1;
 }
 
-.add-storage-box-popup a:hover {
+.container button:hover {
   cursor: pointer;
 }
 
-.add-storage-box-popup .popup-exit {
+.popupExit {
   position: absolute;
   left: 96%;
 }
 
-.add-storage-box-popup input {
+.container input {
   position: absolute;
   top: 33%;
   left: 50%;
@@ -27,7 +28,7 @@
   font-size: 20px;
 }
 
-.popup-create-new-btn {
+.createBtn {
   width: 75%;
   height: 30px;
   border: 1px black solid;
@@ -39,8 +40,8 @@
   border-radius: 4px;
 }
 
-.popup-create-new-btn p {
+.createBtn p {
   top: 50%;
   left: 50%;
-  transform: translate(28%, -50%);
+  transform: translate(0%, -60%);
 }

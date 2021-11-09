@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import "./AddStorageBoxPopUp.css";
+import NewBoxPopUpCSS from "./NewBoxPopUp.module.css";
 
-export default function AddStorageBoxPopUp({ onExitPopUp }) {
+export default function NewBoxPopUp({ onExitPopUp, onCreate }) {
   const [title, setTitle] = useState("");
   //Update State
   const handledChange = (event) => {
@@ -28,19 +28,25 @@ export default function AddStorageBoxPopUp({ onExitPopUp }) {
   };
 
   return (
-    <div className="add-storage-box-popup">
-      <a className="popup-exit" onClick={onExitPopUp}>
+    <div className={NewBoxPopUpCSS.container}>
+      <button className={NewBoxPopUpCSS.popupExit} onClick={onExitPopUp}>
         X
-      </a>
+      </button>
       <input
         onChange={(e) => {
           handledChange(e);
         }}
         placeholder="Title"
       ></input>
-      <a className="popup-create-new-btn" onClick={addToDB}>
+      <button
+        className={NewBoxPopUpCSS.createBtn}
+        onClick={() => {
+          addToDB();
+          onCreate();
+        }}
+      >
         <p>Create New Box</p>
-      </a>
+      </button>
     </div>
   );
 }
