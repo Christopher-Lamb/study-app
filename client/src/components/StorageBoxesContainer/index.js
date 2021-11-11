@@ -2,18 +2,14 @@ import React, { useState, useEffect } from "react";
 import InfoStorageBox from "../InfoStorageBox";
 import NewBoxPopUp from "../NewBoxPopUp";
 import StorageBoxesContainerCSS from "./StorageBoxesContainer.module.css";
-import information from "../../Information.json";
+import TestingInitLocalStorage from "../TestingInitLocalStorage";
+import BoxItem from "../BoxItem";
 
 export default function StorageBoxesContainer() {
   const [informationState, setInformationState] = useState([]);
   useEffect(() => {
-    initLocalStorage();
     setInfoBoxes();
   }, []);
-  //Init LocalStorage
-  const initLocalStorage = () => {
-    localStorage.setItem("information", JSON.stringify(information));
-  };
 
   const [renderAddNewPopUp, setRenderAddNewPopUp] = useState(false);
   // const addStorageBoxToContainer
@@ -24,14 +20,30 @@ export default function StorageBoxesContainer() {
   const handleExitPopUp = () => {
     setRenderAddNewPopUp(false);
   };
-
+  // Update Information Boxes State and local Storage
   const setInfoBoxes = () => {
     const array = JSON.parse(localStorage.getItem("information"));
     setInformationState(array);
   };
 
+  //Clear LocalStorage
+  const clearLocalStorage = () => {
+    localStorage.removeItem("information");
+    setInfoBoxes();
+  };
+
+  const openBoxItem = (itemID) => {
+    console.log(itemID);
+  };
+
   return (
     <div className={StorageBoxesContainerCSS.container}>
+      <InfoStorageBox>
+        <TestingInitLocalStorage
+          onInit={setInfoBoxes}
+          onDeleteAll={clearLocalStorage}
+        />
+      </InfoStorageBox>
       <button onClick={handleAddStorageBtnClick}>
         <InfoStorageBox>
           <div className={StorageBoxesContainerCSS.plus}>
@@ -50,14 +62,20 @@ export default function StorageBoxesContainer() {
         />
       )}
       {/*This will be a state trigger ^^^*/}
-      {informationState.map((info) => {
-        return (
-          <InfoStorageBox key={info.id}>
-            <h1>{info.title}</h1>
-            <p>{info.text}</p>
-          </InfoStorageBox>
-        );
-      })}
+      {informationState
+        ? informationState.map((item) => {
+            return (
+              <InfoStorageBox
+                onClick={() => {
+                  openBoxItem(item.id);
+                }}
+                key={item.id}
+              >
+                <BoxItem info={item} />
+              </InfoStorageBox>
+            );
+          })
+        : null}
     </div>
   );
 }

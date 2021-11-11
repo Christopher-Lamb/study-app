@@ -15,16 +15,24 @@ export default function NewBoxPopUp({ onExitPopUp, onCreate }) {
   const addToDB = () => {
     const informationString = localStorage.getItem("information");
     const informationParsed = JSON.parse(informationString);
-
+    let newID = 1;
     //Gets the id of last item stored in local Storage -- Temporary --
-    const newID = parseInt(informationParsed.slice(-1)[0].id) + 1;
-    //New Box/List Item
-    const newBox = { id: newID, title: title };
     console.log(informationParsed);
-    informationParsed.push(newBox);
-    //Send pack to localStorage
-
-    localStorage.setItem("information", JSON.stringify(informationParsed));
+    //If localStorage empty
+    if (informationParsed === null) {
+      const newID = 1;
+      const newArray = [{ id: newID, title: title }];
+      localStorage.setItem("information", JSON.stringify(newArray));
+    } else {
+      //Else local storage exists
+      newID = parseInt(informationParsed.slice(-1)[0].id) + 1;
+      //New Box/List Item
+      const newBox = { id: newID, title: title };
+      console.log(informationParsed);
+      informationParsed.push(newBox);
+      //Send back to localStorage
+      localStorage.setItem("information", JSON.stringify(informationParsed));
+    }
   };
 
   return (
