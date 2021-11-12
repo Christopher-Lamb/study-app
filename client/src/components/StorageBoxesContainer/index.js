@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import InfoStorageBox from "../InfoStorageBox";
 import NewBoxPopUp from "../NewBoxPopUp";
 import StorageBoxesContainerCSS from "./StorageBoxesContainer.module.css";
+// import InfoStorageBoxCSS from "../InfoStorageBox/InfoStorageBox.module.css";
 import TestingInitLocalStorage from "../TestingInitLocalStorage";
 import BoxItem from "../BoxItem";
 
@@ -32,10 +33,6 @@ export default function StorageBoxesContainer() {
     setInfoBoxes();
   };
 
-  const openBoxItem = (itemID) => {
-    console.log(itemID);
-  };
-
   return (
     <div className={StorageBoxesContainerCSS.container}>
       <InfoStorageBox>
@@ -64,16 +61,7 @@ export default function StorageBoxesContainer() {
       {/*This will be a state trigger ^^^*/}
       {informationState
         ? informationState.map((item) => {
-            return (
-              <InfoStorageBox
-                onClick={() => {
-                  openBoxItem(item.id);
-                }}
-                key={item.id}
-              >
-                <BoxItem info={item} />
-              </InfoStorageBox>
-            );
+            return <BoxItem info={item} />;
           })
         : null}
     </div>

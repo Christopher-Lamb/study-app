@@ -9,6 +9,8 @@
   transition: 0.2s ease-in-out;
   position: relative;
   padding: 20px;
+  background: white;
+  transition: 2s ease-in-out;
 }
 
 .storageBox:hover {
@@ -16,4 +18,12 @@
   width: 210px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
+}
+
+.storageBoxOpen {
+  z-index: 3 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  position: absolute !important;
+  transition: 2s ease-in-out !important;
 }
