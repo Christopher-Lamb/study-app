@@ -2,6 +2,7 @@
   box-sizing: border-box;
   border: 1px solid black;
   height: 200px;
+  min-height: auto;
   width: 200px;
   overflow: hidden;
   margin: 10px;
@@ -22,8 +23,15 @@
 
 .storageBoxOpen {
   z-index: 3 !important;
-  width: 100vw !important;
-  height: 100vh !important;
+  width: 99vw !important;
+  height: 1500px !important;
+  top: 0px;
   position: absolute !important;
   transition: 2s ease-in-out !important;
+  border-radius: 0 !important;
+  margin: 0px !important;
+}
+
+.contentContainer {
+  width: 99vw;
 }
