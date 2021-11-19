@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import InfoStorageBoxCSS from "../InfoStorageBox/InfoStorageBox.module.css";
+import BoxItemCSS from "../BoxItem/BoxItem.module.css";
 import ContentSelector from "../ContentSelector";
 import AddHeader from "../addHeader";
 import AddText from "../addText";
+import NoteText from "../NoteText";
 // import BoxItemCSS from "./BoxItem.module.css";
 
+//Should be Named NoteBox Or something NEEDS CHANGE
 export default function BoxItem({ info }) {
-  const [classList, setClassList] = useState(`${InfoStorageBoxCSS.storageBox}`);
+  const [classList, setClassList] = useState(`${BoxItemCSS.storageBox}`);
   const [isOpen, setIsOpen] = useState(false);
   const [contentState, setContentState] = useState({});
   const [newComponent, setNewComponentState] = useState();
+  const [workingContentArray, setWorkingContentArray] = useState([]);
 
   useEffect(() => {
     setContentState(info);
@@ -18,9 +21,7 @@ export default function BoxItem({ info }) {
   const handleClick = () => {
     //If box is able to be opened and is closed
     if (!isOpen) {
-      setClassList(
-        `${InfoStorageBoxCSS.storageBox} ${InfoStorageBoxCSS.storageBoxOpen}`
-      );
+      setClassList(`${BoxItemCSS.storageBox} ${BoxItemCSS.storageBoxOpen}`);
       setIsOpen(true);
     }
     //If box is able to be opened and is open
@@ -28,17 +29,39 @@ export default function BoxItem({ info }) {
 
   const handleExit = () => {
     if (isOpen) {
-      setClassList(`${InfoStorageBoxCSS.storageBox} `);
+      setClassList(`${BoxItemCSS.storageBox} `);
       setIsOpen(false);
     }
   };
 
+  //On Submit of new Header Element
   const handleHeaderBtn = () => {
-    setNewComponentState(<AddHeader />);
+    setNewComponentState(
+      <AddHeader
+        boxId={info.id}
+        handleSave={(text) => {
+          setWorkingContentArray((prevState) => [
+            ...prevState,
+            <NoteText elementType={"header"} text={text} />,
+          ]);
+        }}
+      />
+    );
   };
 
+  //On Submit of new Text element
   const handleTextBtn = () => {
-    setNewComponentState(<AddText />);
+    setNewComponentState(
+      <AddText
+        boxId={info.id}
+        handleSave={(text) => {
+          setWorkingContentArray((prevState) => [
+            ...prevState,
+            <NoteText elementType={"text"} text={text} />,
+          ]);
+        }}
+      />
+    );
   };
 
   const handleSelectorCancel = () => {
@@ -49,22 +72,28 @@ export default function BoxItem({ info }) {
   return (
     <>
       <div onClick={handleClick} className={classList}>
-        <button onClick={handleExit}>X</button>
-        <ContentSelector
-          createHeader={handleHeaderBtn}
-          createText={handleTextBtn}
-          cancelBtn={handleSelectorCancel}
-        />
-        <h1>{contentState.id}</h1>
-        <h2>{contentState.title}</h2>
+        {isOpen && <button onClick={handleExit}>X</button>}
+        <h2>{contentState.title}</h2>{" "}
         {contentState.content ? (
-          <div className={InfoStorageBoxCSS.contentContainer}>
-            <p>{contentState.content[0].header}</p>
-            <p>{contentState.content[1].text}</p>
+          <div className={BoxItemCSS.contentContainer}>
+            {contentState.content.map((item) => {
+              if (item.header) {
+                return <NoteText elementType={"header"} text={item.header} />;
+              } else if (item.text) {
+                return <NoteText elementType={"text"} text={item.text} />;
+              }
+            })}
+            {workingContentArray}{" "}
+            {isOpen && (
+              <ContentSelector
+                createHeader={handleHeaderBtn}
+                createText={handleTextBtn}
+                cancelBtn={handleSelectorCancel}
+              />
+            )}
             {newComponent}
           </div>
         ) : null}
-
         {/* <button>Edit</button> */}
       </div>
     </>

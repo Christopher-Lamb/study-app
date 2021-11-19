@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import InfoStorageBox from "../InfoStorageBox";
 import NewBoxPopUp from "../NewBoxPopUp";
 import StorageBoxesContainerCSS from "./StorageBoxesContainer.module.css";
-import InfoStorageBoxCSS from "../InfoStorageBox/InfoStorageBox.module.css";
+import BoxItemCSS from "../BoxItem/BoxItem.module.css";
 import TestingInitLocalStorage from "../TestingInitLocalStorage";
 import BoxItem from "../BoxItem";
 
@@ -35,14 +34,14 @@ export default function StorageBoxesContainer() {
 
   return (
     <div className={StorageBoxesContainerCSS.container}>
-      <div className={InfoStorageBoxCSS.storageBox}>
+      <div className={BoxItemCSS.storageBox}>
         <TestingInitLocalStorage
           onInit={setInfoBoxes}
           onDeleteAll={clearLocalStorage}
         />
       </div>
       <button onClick={handleAddStorageBtnClick}>
-        <div className={InfoStorageBoxCSS.storageBox}>
+        <div className={BoxItemCSS.storageBox}>
           <div className={StorageBoxesContainerCSS.plus}>
             <div className={StorageBoxesContainerCSS.verticalLine}></div>
             <div className={StorageBoxesContainerCSS.horizontalLine}></div>

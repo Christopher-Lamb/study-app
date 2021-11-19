@@ -21,13 +21,13 @@ export default function NewBoxPopUp({ onExitPopUp, onCreate }) {
     //If localStorage empty
     if (informationParsed === null) {
       const newID = 1;
-      const newArray = [{ id: newID, title: title }];
+      const newArray = [{ id: newID, title: title, content: [] }];
       localStorage.setItem("information", JSON.stringify(newArray));
     } else {
       //Else local storage exists
       newID = parseInt(informationParsed.slice(-1)[0].id) + 1;
       //New Box/List Item
-      const newBox = { id: newID, title: title };
+      const newBox = { id: newID, title: title, content: [] };
       console.log(informationParsed);
       informationParsed.push(newBox);
       //Send back to localStorage

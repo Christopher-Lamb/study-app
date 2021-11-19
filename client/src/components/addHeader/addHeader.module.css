@@ -3,3 +3,9 @@
   height: 40px;
   border: 1px solid black;
 }
+
+.btn {
+  height: 20px;
+  width: auto;
+  border: 1px solid black;
+}
