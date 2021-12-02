@@ -6,6 +6,7 @@ import TestingInitLocalStorage from "../TestingInitLocalStorage";
 import BoxItem from "../BoxItem";
 
 export default function StorageBoxesContainer() {
+  //Shitty Name
   const [informationState, setInformationState] = useState([]);
   useEffect(() => {
     setInfoBoxes();
@@ -59,8 +60,8 @@ export default function StorageBoxesContainer() {
       )}
       {/*This will be a state trigger ^^^*/}
       {informationState
-        ? informationState.map((item) => {
-            return <BoxItem info={item} />;
+        ? informationState.map((item, i) => {
+            return <BoxItem key={i} info={item} />;
           })
         : null}
     </div>
