@@ -4,13 +4,11 @@ import ContentSelector from "../ContentSelector";
 // import AddHeader from "../addHeader";
 import AddText from "../AddText";
 import NoteText from "../NoteText";
-// import BoxItemCSS from "./BoxItem.module.css";
 
-//Should be Named NoteBox Or something NEEDS CHANGE
 export default function BoxItem({ info }) {
   const [classList, setClassList] = useState(`${BoxItemCSS.storageBox}`);
   const [isOpen, setIsOpen] = useState(false);
-  const [contentState] = useState(info);
+  const [contentState, setContentState] = useState(info);
   const [newComponent, setNewComponentState] = useState();
   const [workingContentArray, setWorkingContentArray] = useState([]);
   // if (info.content) {
@@ -19,7 +17,7 @@ export default function BoxItem({ info }) {
 
   useEffect(() => {
     noteTextBuilder();
-  }, []);
+  }, [contentState]);
   //Handles Open for Box clicked
   const handleClick = () => {
     //If box is able to be opened and is closed
@@ -45,14 +43,16 @@ export default function BoxItem({ info }) {
         contentType={"heading"}
         boxId={info.id}
         handleSave={(noteInfo) => {
-          setWorkingContentArray((prevState, i) => [
-            ...prevState,
-            <NoteText
-              key={noteInfo[1]}
-              contentType={"heading"}
-              content={[noteInfo[0], info.id, noteInfo[1]]}
-            />,
-          ]);
+          const newContentArray = contentState.content;
+          newContentArray.push({
+            id: noteInfo[1],
+            header: noteInfo[0],
+          });
+          setContentState((state) => ({
+            ...state,
+            content: newContentArray,
+          }));
+          handleSelectorCancel();
         }}
       />
     );
@@ -65,15 +65,31 @@ export default function BoxItem({ info }) {
         contentType={"text"}
         boxId={info.id}
         handleSave={(noteInfo) => {
-          console.log("noteInfo", noteInfo);
-          setWorkingContentArray((prevState) => [
-            ...prevState,
-            <NoteText
-              key={noteInfo[1]}
-              contentType={"text"}
-              content={[noteInfo[0], info.id, noteInfo[1]]}
-            />,
-          ]);
+          // console.log("Save btn start");
+          // console.log("noteInfo", noteInfo);
+          // console.log("Content State", contentState.content);
+
+          const newContentArray = contentState.content;
+          newContentArray.push({
+            id: noteInfo[1],
+            text: noteInfo[0],
+          });
+          setContentState((state) => ({
+            ...state,
+            content: newContentArray,
+          }));
+          // setWorkingContentArray((prevState) => [
+          //   ...prevState,
+          //   <NoteText
+          //     id={`box-${info.id}-note-${noteInfo[1]}`}
+          //     key={noteInfo[1]}
+          //     contentType={"text"}
+          //     content={[noteInfo[0], info.id, noteInfo[1]]}
+          //     unRender={deleteFromArray}
+          //   />,
+          // ]);
+          handleSelectorCancel();
+          console.log("Save btn End");
         }}
       />
     );
@@ -92,17 +108,21 @@ export default function BoxItem({ info }) {
         if (note.header) {
           return (
             <NoteText
+              id={`box-${info.id}-note-${note.id}`}
               key={note.id}
               contentType={"heading"}
               content={[note.header, info.id, note.id]}
+              unRender={deleteFromArray}
             />
           );
         } else if (note.text) {
           return (
             <NoteText
+              id={`box-${info.id}-note-${note.id}`}
               key={note.id}
               contentType={"text"}
               content={[note.text, info.id, note.id]}
+              unRender={deleteFromArray}
             />
           );
         }
@@ -111,13 +131,36 @@ export default function BoxItem({ info }) {
     }
   };
 
+  const deleteFromArray = (deleteId) => {
+    //When a note hits a delete button loop through content array and remove that note
+
+    const newContentArray = contentState.content.filter((note) => {
+      console.log(note.id);
+      if (note.id === deleteId) {
+        return;
+      } else {
+        return note;
+      }
+    });
+    //This updates the content state array with new and old information
+    setContentState((state) => ({
+      ...state,
+      content: newContentArray,
+    }));
+  };
+
   //User Create Box item
   return (
     <div onClick={handleClick} className={classList}>
-      <h2>{contentState.title}</h2>
+      {!isOpen && <h1>{contentState.title}</h1>}
       {isOpen && (
         <>
           <button onClick={handleExit}>X</button>
+          <NoteText
+            key="title"
+            contentType="title"
+            content={[contentState.title, info.id]}
+          />
           {contentState.content ? (
             <div className={BoxItemCSS.contentContainer}>
               {workingContentArray}
