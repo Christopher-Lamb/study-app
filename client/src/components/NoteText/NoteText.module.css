@@ -13,14 +13,13 @@
   overflow-x: auto;
   width: 100%;
   min-height: 100px;
+  height: 1000px;
   resize: none;
   overflow-y: auto;
-}
-
-.editingTextarea {
   border: 1px solid rgb(151, 151, 151);
   outline: none;
 }
+
 
 .btn {
   border: 1px solid black;
