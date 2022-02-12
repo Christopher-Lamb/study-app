@@ -79,7 +79,7 @@ export default function NoteText({ content, contentType, unRender }) {
       return box;
     });
 
-    localStorage.setItem("information", JSON.stringify(updatedArray));
+    localStorage.setItem("StorageBoxes", JSON.stringify(updatedArray));
 
     // setElementState(<p>{updatedText}</p>);
   };

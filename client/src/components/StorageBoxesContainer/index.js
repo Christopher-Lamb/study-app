@@ -4,6 +4,7 @@ import StorageBoxesContainerCSS from "./StorageBoxesContainer.module.css";
 import BoxItemCSS from "../BoxItem/BoxItem.module.css";
 import TestingInitLocalStorage from "../TestingInitLocalStorage";
 import BoxItem from "../BoxItem";
+import information from "../../Information.json";
 
 export default function StorageBoxesContainer() {
   //Shitty Name
@@ -15,17 +16,24 @@ export default function StorageBoxesContainer() {
     setStorageBoxes();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("Change BoxState");
-  //   getComponents();
-  // }, [boxesState]);
+  useEffect(() => {
+    console.log("Change BoxState");
+    getComponents();
+  }, [boxesState]);
+
+  const initLocalStorage = () => {
+    localStorage.setItem("StorageBoxes", JSON.stringify(information));
+    setStorageBoxes();
+  };
 
   const getComponents = () => {
     if (boxesState !== null) {
       const components = boxesState.map((box, i) => {
-        return <BoxItem key={i} content={box} deleteBox={handleBoxDelete} />;
+        return (
+          <BoxItem key={box.boxId} content={box} deleteBox={handleBoxDelete} />
+        );
       });
-      console.log(components)
+      console.log(components);
       setBoxesComponentState(components);
     }
   };
@@ -40,15 +48,15 @@ export default function StorageBoxesContainer() {
   // Update Information Boxes State and local Storage
   const setStorageBoxes = () => {
     const array = JSON.parse(localStorage.getItem("StorageBoxes"));
-    // setBoxesState(array);
+
     setBoxesState(array);
-    getComponents()
+    getComponents();
   };
 
   //Clear LocalStorage
   const clearLocalStorage = () => {
     localStorage.removeItem("StorageBoxes");
-    setStorageBoxes();
+    setBoxesState([]);
   };
 
   const handleBoxDelete = (delBoxId) => {
@@ -66,7 +74,7 @@ export default function StorageBoxesContainer() {
     });
 
     setBoxesState(updatedStorageBoxes);
-    getComponents()
+    getComponents();
 
     localStorage.setItem("StorageBoxes", JSON.stringify(updatedStorageBoxes));
   };
@@ -74,10 +82,7 @@ export default function StorageBoxesContainer() {
   return (
     <div className={StorageBoxesContainerCSS.container}>
       <div className={BoxItemCSS.storageBox}>
-        <TestingInitLocalStorage
-          onInit={setStorageBoxes}
-          onDeleteAll={clearLocalStorage}
-        />
+        <TestingInitLocalStorage onInit={initLocalStorage} />
       </div>
       {/* Add Storage Box */}
       <button onClick={handleAddStorageBtnClick}>

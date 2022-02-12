@@ -9,7 +9,13 @@ export default function TestingInitLocalStorage({ onInit, onDeleteAll }) {
   };
   return (
     <>
-      <button
+      <button onClick={onInit} className={TestingModuleCSS.render_box}>
+        <strong>RenderDemo</strong>
+      </button>
+      <p className={TestingModuleCSS.explaination}>
+        This will delete any currently saved boxes
+      </p>
+      {/* <button
         onClick={() => {
           initLocalStorage();
           onInit();
@@ -20,7 +26,7 @@ export default function TestingInitLocalStorage({ onInit, onDeleteAll }) {
       </button>
       <button onClick={onDeleteAll} className={TestingModuleCSS.text}>
         Delete All
-      </button>
+      </button> */}
     </>
   );
 }
