@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { returnUniqueNum } from "../../hooks/dbFunctions";
 import NewBoxPopUpCSS from "./NewBoxPopUp.module.css";
 
 export default function NewBoxPopUp({ onExitPopUp, onCreate }) {
@@ -13,25 +13,30 @@ export default function NewBoxPopUp({ onExitPopUp, onCreate }) {
 
   //Read and Edit Json as of Now but in future Google docs and then Mongo or MySQL
   const addToDB = () => {
-    const informationString = localStorage.getItem("information");
+    const informationString = localStorage.getItem("StorageBoxes");
     const informationParsed = JSON.parse(informationString);
-    let newID = 1;
+
     //Gets the id of last item stored in local Storage -- Temporary --
-    console.log(informationParsed);
+    // console.log("information parsed", informationParsed.boxId);
     //If localStorage empty
     if (informationParsed === null) {
-      const newID = 1;
-      const newArray = [{ id: newID, title: title, content: [] }];
-      localStorage.setItem("information", JSON.stringify(newArray));
+      const newID = 0;
+      const newArray = [{ boxId: newID, title: title, content: [] }];
+      localStorage.setItem("StorageBoxes", JSON.stringify(newArray));
     } else {
       //Else local storage exists
-      newID = parseInt(informationParsed.slice(-1)[0].id) + 1;
+      const idArray = informationParsed.map((box) => {
+        return box.boxId;
+      });
+      const newID = returnUniqueNum(idArray);
+
       //New Box/List Item
-      const newBox = { id: newID, title: title, content: [] };
-      console.log(informationParsed);
+      // console.log(newID);
+      const newBox = { boxId: newID, title: title, content: [] };
+      
       informationParsed.push(newBox);
       //Send back to localStorage
-      localStorage.setItem("information", JSON.stringify(informationParsed));
+      localStorage.setItem("StorageBoxes", JSON.stringify(informationParsed));
     }
   };
 

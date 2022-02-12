@@ -7,12 +7,28 @@ import BoxItem from "../BoxItem";
 
 export default function StorageBoxesContainer() {
   //Shitty Name
-  const [informationState, setInformationState] = useState([]);
+  const [boxesState, setBoxesState] = useState([]);
+  const [boxesComponentState, setBoxesComponentState] = useState([]);
+  const [renderAddNewPopUp, setRenderAddNewPopUp] = useState(false);
+
   useEffect(() => {
-    setInfoBoxes();
+    setStorageBoxes();
   }, []);
 
-  const [renderAddNewPopUp, setRenderAddNewPopUp] = useState(false);
+  // useEffect(() => {
+  //   console.log("Change BoxState");
+  //   getComponents();
+  // }, [boxesState]);
+
+  const getComponents = () => {
+    if (boxesState !== null) {
+      const components = boxesState.map((box, i) => {
+        return <BoxItem key={i} content={box} deleteBox={handleBoxDelete} />;
+      });
+      console.log(components)
+      setBoxesComponentState(components);
+    }
+  };
   // const addStorageBoxToContainer
   const handleAddStorageBtnClick = () => {
     setRenderAddNewPopUp(true);
@@ -22,25 +38,48 @@ export default function StorageBoxesContainer() {
     setRenderAddNewPopUp(false);
   };
   // Update Information Boxes State and local Storage
-  const setInfoBoxes = () => {
-    const array = JSON.parse(localStorage.getItem("information"));
-    setInformationState(array);
+  const setStorageBoxes = () => {
+    const array = JSON.parse(localStorage.getItem("StorageBoxes"));
+    // setBoxesState(array);
+    setBoxesState(array);
+    getComponents()
   };
 
   //Clear LocalStorage
   const clearLocalStorage = () => {
-    localStorage.removeItem("information");
-    setInfoBoxes();
+    localStorage.removeItem("StorageBoxes");
+    setStorageBoxes();
+  };
+
+  const handleBoxDelete = (delBoxId) => {
+    // console.log(delBoxId);
+    //Handles DB interaction
+    // const storageBoxes = JSON.parse(localStorage.getItem("StorageBoxes"));
+    const updatedStorageBoxes = boxesState.filter((box) => {
+      if (box.boxId === delBoxId.boxId) {
+        return;
+        // console.log("Box.BoxId if", box.boxId);
+      } else {
+        // console.log("Box.BoxId else", box.boxId);
+        return box;
+      }
+    });
+
+    setBoxesState(updatedStorageBoxes);
+    getComponents()
+
+    localStorage.setItem("StorageBoxes", JSON.stringify(updatedStorageBoxes));
   };
 
   return (
     <div className={StorageBoxesContainerCSS.container}>
       <div className={BoxItemCSS.storageBox}>
         <TestingInitLocalStorage
-          onInit={setInfoBoxes}
+          onInit={setStorageBoxes}
           onDeleteAll={clearLocalStorage}
         />
       </div>
+      {/* Add Storage Box */}
       <button onClick={handleAddStorageBtnClick}>
         <div className={BoxItemCSS.storageBox}>
           <div className={StorageBoxesContainerCSS.plus}>
@@ -53,17 +92,13 @@ export default function StorageBoxesContainer() {
         <NewBoxPopUp
           onExitPopUp={handleExitPopUp}
           onCreate={() => {
-            setInfoBoxes();
+            setStorageBoxes();
             handleExitPopUp();
           }}
         />
       )}
-      {/*This will be a state trigger ^^^*/}
-      {informationState
-        ? informationState.map((item, i) => {
-            return <BoxItem key={i} info={item} />;
-          })
-        : null}
+      {/*Displays ALl the Stored Boxes ^^^*/}
+      {boxesComponentState}
     </div>
   );
 }

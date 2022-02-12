@@ -5,7 +5,7 @@ import information from "../../Information.json";
 export default function TestingInitLocalStorage({ onInit, onDeleteAll }) {
   //Init LocalStorage
   const initLocalStorage = () => {
-    localStorage.setItem("information", JSON.stringify(information));
+    localStorage.setItem("StorageBoxes", JSON.stringify(information));
   };
   return (
     <>

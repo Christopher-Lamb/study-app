@@ -21,34 +21,35 @@ export default function AddText({
   //Take text area and add to contents array
   const updateDB = () => {
     //Get INformation from db
-    const information = JSON.parse(localStorage.getItem("information"));
-    console.log("information", information);
+    const storageBoxes = JSON.parse(localStorage.getItem("StorageBoxes"));
+    // console.log("StorageBoxes", storageBoxes);
     //Finds the note we are looking for then checks what type we are adding
-    const updatedArray = information.map((box) => {
+    const updatedArray = storageBoxes.map((box) => {
       //If the current box we are in matches the current box in loop
-      if (box.id === boxId) {
+      if (box.boxId === boxId) {
         //Build Id of notes
         const noteIdArray = box.content.map((note) => {
-          return note.id;
+          return note.noteId;
         });
-        console.log("noteIdArray: ", noteIdArray);
+        // console.log("noteIdArray: ", noteIdArray);
 
-        const id = returnUniqueNum(noteIdArray, 1000);
+        const id = returnUniqueNum(noteIdArray);
         
-        //pass child to parent 
-        handleSave([textarea, id]);
+        //pass child to parent \[textarea, id]
+        //
+        handleSave({"noteId":id,"text":textarea});
 
         if (contentType === "heading") {
-          box.content.push({ id: id, header: textarea });
+          box.content.push({ noteId: id, header: textarea });
         } else if (contentType === "text") {
-          box.content.push({ id: id, text: textarea });
+          box.content.push({ noteId: id, text: textarea });
         }
       }
 
       return box;
     });
 
-    localStorage.setItem("information", JSON.stringify(updatedArray));
+    localStorage.setItem("StorageBoxes", JSON.stringify(updatedArray));
   };
 
   //Click
