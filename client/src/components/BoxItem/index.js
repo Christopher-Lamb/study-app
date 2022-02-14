@@ -3,6 +3,7 @@ import BoxItemCSS from "../BoxItem/BoxItem.module.css";
 import ContentSelector from "../ContentSelector";
 import AddText from "../AddText";
 import NoteText from "../NoteText";
+import ThreeDotsMenu from "../ThreeDotsMenu";
 
 // Single Stored Box that contains a collection of
 //info consists of the Text Headings and Title of each Box Stored
@@ -139,15 +140,7 @@ export default function BoxItem({ content, deleteBox }) {
     <div onClick={handleClick} className={classList}>
       {!isOpen && (
         <>
-          <h2
-            onClick={(e) => {
-              e.stopPropagation()
-              
-              deleteBox(boxState);
-            }}
-          >
-            ...Delete
-          </h2>
+          <ThreeDotsMenu />
           <h1>{boxState.title}</h1>
         </>
       )}

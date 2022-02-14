@@ -1,0 +1,31 @@
+.dotsContainer {
+  position: absolute;
+  height: 50px;
+  width: 20px;
+  top: 0px;
+  left: 90.5%;
+}
+.dotsContainer:hover {
+  background-color: rgb(199, 199, 199);
+}
+
+.dots {
+  position: absolute;
+  font-size: 40px;
+  height: 5px;
+  width: 5px;
+  left: 5px;
+}
+
+
+.dot1 {
+  top: -50%;
+  color: black;
+}
+.dot2 {
+  top: -25%;
+}
+.dot3 {
+  top: 0%;
+  color: black;
+}

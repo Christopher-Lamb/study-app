@@ -32,7 +32,6 @@ export function returnUniqueNum(arrayOfIds) {
   }
 }
 
-// let arrayOfIds = [8, 0, 1, 2, 7, 3, 5, 4,6,11,13,14,15,17,9,10,12,16,18];
-
-// // console.log("\n====\nFINAL\n====\n", returnUniqueNum(arrayOfIds, 1000));
-// console.log(returnUniqueNum(arrayOfIds));
+//AddOne to Db
+//Delete one to Db
+//Update one in db
