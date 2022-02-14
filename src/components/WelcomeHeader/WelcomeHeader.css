@@ -1,0 +1,22 @@
+.welcome-header {
+  border: 1px solid rgb(206, 206, 206);
+  height: 100px;
+  width: 75%;
+  border-radius: 15px;
+  background: linear-gradient(
+    rgb(255, 255, 255) 0%,
+    rgb(240, 240, 240) 50%,
+    rgb(226, 226, 226) 100%
+  );
+  font-size: 30px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.welcome-header h1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -100%);
+}

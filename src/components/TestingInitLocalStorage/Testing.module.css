@@ -1,0 +1,39 @@
+.text {
+  position: relative;
+  font-size: 20px;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 300ms ease-in-out;
+}
+
+.text:hover {
+  transition: 300ms ease-in-out;
+  top: 31%;
+}
+
+.explaination {
+  position: relative;
+  top: 23%;
+  text-align: center;
+}
+
+.render_box {
+  position: relative;
+  font-size: 20px;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 300ms ease-in-out;
+  outline: 1px solid black;
+  padding: 2px;
+}
+.render_box:hover {
+  transition: 300ms ease-in-out;
+  top: 31%;
+}
+
+.render_box:active {
+  transition: 300ms ease-in-out;
+  top: 29%;
+}

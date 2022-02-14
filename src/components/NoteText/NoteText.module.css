@@ -1,0 +1,47 @@
+.container {
+  padding: 20px;
+  height: auto;
+  width: 90%;
+  overflow: auto;
+}
+
+.container:hover {
+  border: 1px solid black;
+}
+
+.editingTextarea {
+  overflow-x: auto;
+  width: 100%;
+  resize: none;
+  overflow-y: auto;
+  border: 1px solid rgb(151, 151, 151);
+  outline: none;
+  font-size: 17px;
+
+}
+
+.editingHeading {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.btn {
+  border: 1px solid black;
+  padding: 2px;
+}
+
+.btn:active {
+  background: rgb(224, 224, 224);
+  transform: translateY(2px);
+}
+
+.pTagContainer {
+  display: flex;
+  flex-direction: column;
+}
+.pTag {
+  font-size: 17px;
+}
+.headingTag {
+  font-size: 25px;
+}

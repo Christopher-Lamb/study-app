@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /* margin-left: 5%;
+  margin-right: 5%; */
+}
+
+.btn {
+  border: 1px solid black;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  margin: 10px;
+  border-radius: 5%;
+  transition: 0.5s ease-in-out;
+  position: relative;
+}
+
+.plus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.2s ease-in-out;
+}
+.plus:hover {
+  cursor: pointer;
+  top: 45%;
+  transition: 0.2s ease-in-out;
+}
+
+.verticalLine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 100px;
+  background: black;
+}
+
+.horizontalLine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 20px;
+  background: black;
+}
