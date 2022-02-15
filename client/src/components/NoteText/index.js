@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import NoteTextCSS from "./NoteText.module.css";
 
-export default function NoteText({ content, contentType, unRender }) {
+export default function NoteText({
+  content,
+  contentType,
+  unRender,
+  updateTitle,
+}) {
   const [elementState, setElementState] = useState(contentType);
   const [textState, setTextState] = useState(content.text);
   const [editIsActive, setEditIsActive] = useState(false);
@@ -17,17 +22,6 @@ export default function NoteText({ content, contentType, unRender }) {
       editorClass.current = NoteTextCSS.editingHeading;
     }
   }, []);
-
-  // // Sets note Type
-  // const setNote = () => {
-  //   if (contentType === "heading") {
-  //     setElementState("hTag");
-  //   } else if (contentType === "text") {
-  //     setElementState("pTag");
-  //   } else if (contentType === "title") {
-  //     setElementState("title");
-  //   }
-  // };
 
   const contentChecker = () => {
     //switch statement would work better i think
@@ -57,7 +51,7 @@ export default function NoteText({ content, contentType, unRender }) {
         if (contentType === "title") {
           //change title to what was edited
           box.title = updatedText;
-          console.log("box", box);
+          // console.log("box", box);
           //return box to the array
           return box;
         } else {
@@ -187,6 +181,9 @@ export default function NoteText({ content, contentType, unRender }) {
               onClick={(e) => {
                 e.stopPropagation();
                 handleSave(editingText);
+                if (contentType === "title") {
+                  updateTitle(editingText);
+                }
               }}
             >
               Save
