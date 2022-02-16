@@ -11,7 +11,9 @@ export default function NoteText({
   const [textState, setTextState] = useState(content.text);
   const [editIsActive, setEditIsActive] = useState(false);
   const [editingText, setEditingText] = useState(content.text);
+  const [editorHeight, setEditorHeight] = useState();
   let editorClass = useRef();
+  const editorRef = useRef(null);
 
   useEffect(() => {
     //Init Header or Text for note box
@@ -85,6 +87,12 @@ export default function NoteText({
   // Handle Item Click For Editing a box
   const handleClick = () => {
     setEditIsActive(true);
+    initEditorHeight();
+  };
+
+  const initEditorHeight = () => {
+    const textArea = document.getElementById(`note-${content.noteId}`);
+    console.log(textArea);
   };
 
   const pTag = () => {
@@ -140,17 +148,20 @@ export default function NoteText({
       <div onClick={handleClick} className={NoteTextCSS.container}>
         {!editIsActive && contentChecker()}
         {editIsActive && (
-          <>
+          <div className={NoteTextCSS.editor}>
             <p>Editing</p>
             <textarea
-              // onClick={(e) => handleClick(e)}
+              onAnimationStart={(e) => {
+                const height = e.target.scrollHeight;
+                setEditorHeight(height);
+                console.log(height);
+              }}
               id={`note-${content.noteId}`}
-              style={{ height: "100%", transition: "1s ease-in-out" }}
               className={`${editorClass.current}`}
+              style={{ height: `${editorHeight}px` }}
               onChange={(e) => {
                 editingTextUpdater(e.target.value);
-                e.target.style.height = null;
-                e.target.style.height = `${e.target.scrollHeight}px`;
+                console.log(e.target.scrollHeight);
               }}
               defaultValue={textState}
             ></textarea>
@@ -193,7 +204,7 @@ export default function NoteText({
                 Delete
               </button>
             )}
-          </>
+          </div>
         )}
       </div>
     </>

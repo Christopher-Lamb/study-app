@@ -37,8 +37,711 @@
         "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
       }
     ]
-  },{
+  },
+  {
     "boxId": 101,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 102,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 103,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 104,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 105,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 106,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 107,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 108,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 109,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 110,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 111,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 112,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 113,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 114,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 115,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 116,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 117,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 118,
+    "title": "Demo Note",
+    "content": [
+      {
+        "noteId": 1,
+        "header": "Welcome to the demmo Note"
+      },
+      { "noteId": 10, "header": "These Items are Headers" },
+      {
+        "noteId": 2,
+        "text": "Items like these are text items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+      },
+      {
+        "noteId": 4,
+        "header": "Adding Headers and Text"
+      },
+      {
+        "noteId": 5,
+        "text": "Adding headers and text can be done at the bottom of the screen. By selecting header or text you will be able to input and save a new text which as of right now will be stored in your local storage."
+      },
+      {
+        "noteId": 6,
+        "header": "Editing an Item"
+      },
+      {
+        "noteId": 7,
+        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+      },
+      {
+        "noteId": 8,
+        "header": "The Focus Please Read"
+      },
+      {
+        "noteId": 9,
+        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+      }
+    ]
+  },
+  {
+    "boxId": 119,
     "title": "Demo Note",
     "content": [
       {

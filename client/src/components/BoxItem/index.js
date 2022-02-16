@@ -144,7 +144,7 @@ export default function BoxItem({ content, deleteBox }) {
 
   //User Create Box item
   return (
-    <div onClick={handleClick} className={classList}>
+    <div onClick={handleClick} className={classList} >
       {!isOpen && (
         <>
           <ThreeDotsMenu
