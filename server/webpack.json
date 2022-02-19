@@ -1,0 +1,78 @@
+[
+  { "text": { "nodeName": "#text", "wholeText": "1.", "childNodes": [] } },
+  {
+    "div": {
+      "nodeName": "DIV",
+      "childNodes": [
+        {
+          "text": { "nodeName": "#text", "wholeText": "2.", "childNodes": [] }
+        },
+        {
+          "div": {
+            "nodeName": "DIV",
+            "childNodes": [
+              {
+                "text": {
+                  "nodeName": "#text",
+                  "wholeText": "3.",
+                  "childNodes": []
+                }
+              },
+              {
+                "div": {
+                  "nodeName": "DIV",
+                  "childNodes": [
+                    {
+                      "text": {
+                        "nodeName": "#text",
+                        "wholeText": "4.",
+                        "childNodes": []
+                      }
+                    },
+                    {
+                      "div": {
+                        "nodeName": "DIV",
+                        "childNodes": [
+                          {
+                            "text": {
+                              "nodeName": "#text",
+                              "wholeText": "5.",
+                              "childNodes": []
+                            }
+                          },
+                          { "div": {} }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "div": {
+      "nodeName": "DIV",
+      "childNodes": [{ "text": { "wholeText": "anything", "childNodes": [] } }]
+    }
+  },
+  {
+    "div": {
+      "nodeName": "DIV",
+      "childNodes": [{ "text": { "wholeText": "New Thing", "childNodes": [] } }]
+    }
+  },
+  {
+    "div": {
+      "nodeName": "DIV",
+      "childNodes": [
+        {
+          "br": { "nodeName": "br", "wholeText": "New Thing", "childNodes": [] }
+        }
+      ]
+    }
+  }
+]

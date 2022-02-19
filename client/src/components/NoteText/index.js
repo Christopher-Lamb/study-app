@@ -9,11 +9,14 @@ export default function NoteText({
 }) {
   const [elementState, setElementState] = useState(contentType);
   const [textState, setTextState] = useState(content.text);
-  const [editIsActive, setEditIsActive] = useState(false);
+  const [editorElements, setEditorElements] = useState([]);
   const [editingText, setEditingText] = useState(content.text);
   const [editorHeight, setEditorHeight] = useState();
   let editorClass = useRef();
-  const editorRef = useRef(null);
+  const editorRef = useRef();
+  const textAreaRef = useRef();
+  const textRef = useRef();
+  const currentScrollHeight = useRef(0);
 
   useEffect(() => {
     //Init Header or Text for note box
@@ -23,6 +26,10 @@ export default function NoteText({
     } else if (contentType === "heading" || contentType === "title") {
       editorClass.current = NoteTextCSS.editingHeading;
     }
+
+    // setEditorHeight(textReft);
+    editorRef.current.className = NoteTextCSS.hidden;
+    buildEditorTxt();
   }, []);
 
   const contentChecker = () => {
@@ -41,10 +48,8 @@ export default function NoteText({
   //
   const handleSave = (updatedText) => {
     setTextState(updatedText);
-
     //Get INformation from db
     const storageBoxes = JSON.parse(localStorage.getItem("StorageBoxes"));
-
     //Finds the note we are looking for then checks what type we are adding
     const updatedArray = storageBoxes.map((box) => {
       //If the current box we are in matches the current box in loop
@@ -74,26 +79,16 @@ export default function NoteText({
       }
       return box;
     });
-
     localStorage.setItem("StorageBoxes", JSON.stringify(updatedArray));
-
     // setElementState(<p>{updatedText}</p>);
-  };
-
-  const editingTextUpdater = (text) => {
-    setEditingText(text);
   };
 
   // Handle Item Click For Editing a box
   const handleClick = () => {
-    setEditIsActive(true);
-    initEditorHeight();
+    editorRef.current.classList = "";
+    textRef.current.className = NoteTextCSS.hidden;
   };
 
-  const initEditorHeight = () => {
-    const textArea = document.getElementById(`note-${content.noteId}`);
-    console.log(textArea);
-  };
 
   const pTag = () => {
     // console.log(content.noteId)
@@ -106,12 +101,24 @@ export default function NoteText({
         </p>
       );
     });
-    return <div className={NoteTextCSS.pTagContainer}>{elementLayout}</div>;
-    return <p className={NoteTextCSS.text}> {textState}</p>;
+    return (
+      <div ref={textRef} className={NoteTextCSS.pTagContainer}>
+        {elementLayout}
+      </div>
+    );
+    // return <p className={NoteTextCSS.text}> {textState}</p>;
   };
-  const hTag = <h2 className={NoteTextCSS.headingTag}>{textState}</h2>;
+  const hTag = (
+    <h2 ref={textRef} className={NoteTextCSS.headingTag}>
+      {textState}
+    </h2>
+  );
 
-  const title = <h1 className={NoteTextCSS.title}>{textState}</h1>;
+  const title = (
+    <h1 ref={textRef} className={NoteTextCSS.title}>
+      {textState}
+    </h1>
+  );
 
   const handleDelete = () => {
     //Definitaly not dry but you get the point ok
@@ -122,9 +129,8 @@ export default function NoteText({
     const updatedArray = storageBoxes.map((box) => {
       //If the current box we are in matches the current box in loop
 
-      if (box.id === content.boxId) {
+      if (box.boxId === content.boxId) {
         //If its the title element
-
         const updatedNotes = box.content.filter((note) => {
           if (note.noteId === content.noteId) {
             return;
@@ -143,69 +149,79 @@ export default function NoteText({
     unRender(content.noteId);
   };
 
+  //Formats the editable p tag so it matches the acutal p tags
+  const buildEditorTxt = () => {
+    console.log(textState);
+    let splitArray = textState.split("\n");
+    console.log("splitArray", splitArray);
+    const htmlElements = splitArray.map((line, i) => {
+      return <div key={i}>{line}</div>;
+    });
+    setEditorElements(htmlElements);
+  };
+
   return (
     <>
       <div onClick={handleClick} className={NoteTextCSS.container}>
-        {!editIsActive && contentChecker()}
-        {editIsActive && (
-          <div className={NoteTextCSS.editor}>
-            <p>Editing</p>
-            <textarea
-              onAnimationStart={(e) => {
-                const height = e.target.scrollHeight;
-                setEditorHeight(height);
-                console.log(height);
-              }}
-              id={`note-${content.noteId}`}
-              className={`${editorClass.current}`}
-              style={{ height: `${editorHeight}px` }}
-              onChange={(e) => {
-                editingTextUpdater(e.target.value);
-                console.log(e.target.scrollHeight);
-              }}
-              defaultValue={textState}
-            ></textarea>
-            <br />
-            <button
-              className={NoteTextCSS.btn}
-              onClick={(e) => {
-                e.stopPropagation();
-                if (editingText !== textState) {
-                  let answer = window.confirm(
-                    "You didnt save are you sure you want to close the editor without saving??"
-                  );
-                  if (answer) {
-                    setEditIsActive(false);
-                    setEditingText(textState);
-                  } else {
-                    setEditIsActive(true);
-                  }
-                } else {
-                  setEditIsActive(false);
-                }
-              }}
-            >
-              Close Editor
-            </button>
-            <button
-              className={NoteTextCSS.btn}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleSave(editingText);
-                if (contentType === "title") {
-                  updateTitle(editingText);
-                }
-              }}
-            >
-              Save
-            </button>
-            {contentType !== "title" && (
-              <button onClick={handleDelete} className={NoteTextCSS.btn}>
-                Delete
-              </button>
-            )}
+        {contentChecker()}
+
+        <div ref={editorRef}>
+          <p>Editing</p>
+          <div
+            id={`note-${content.noteId}`}
+            ref={textAreaRef}
+            contentEditable={true}
+            suppressContentEditableWarning={true}
+            className={`${editorClass.current}`}
+            onInput={() => {
+              setEditingText(textAreaRef.current.innerText);
+            }}
+          >
+            {editorElements}
           </div>
-        )}
+          <br />
+          <button
+            className={NoteTextCSS.btn}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (editingText !== textState) {
+                let answer = window.confirm(
+                  "You didnt save are you sure you want to close the editor without saving??"
+                );
+                if (answer) {
+                  editorRef.current.className = NoteTextCSS.hidden;
+                  textRef.current.className = "";
+                  setEditingText(textState);
+                  setEditorHeight(textRef.current.clientHeight);
+                } else {
+                }
+              } else {
+                editorRef.current.className = NoteTextCSS.hidden;
+                textRef.current.className = "";
+                setEditorHeight(textRef.current.clientHeight);
+              }
+            }}
+          >
+            Close Editor
+          </button>
+          <button
+            className={NoteTextCSS.btn}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleSave(textAreaRef.current.innerText);
+              if (contentType === "title") {
+                updateTitle(editingText);
+              }
+            }}
+          >
+            Save
+          </button>
+          {contentType !== "title" && (
+            <button onClick={handleDelete} className={NoteTextCSS.btn}>
+              Delete
+            </button>
+          )}
+        </div>
       </div>
     </>
   );
