@@ -1,10 +1,10 @@
 import React from "react";
-import "./WelcomeHeader.css";
+import CSS from "./WelcomeHeader.module.css";
 
 export default function WelcomeHeader() {
   return (
-    <div className="welcome-header">
-      <h1>Welcome</h1>
+    <div className={CSS.container}>
+      <h1 className={CSS.text}>Jot Freely</h1>
     </div>
   );
 }

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BoxItemCSS from "../BoxItem/BoxItem.module.css";
 import ContentSelector from "../ContentSelector";
 import AddText from "../AddText";
 import NoteText from "../NoteText";
 import ThreeDotsMenu from "../ThreeDotsMenu";
+import BoxTitle from "../BoxTitle";
 
 // Single Stored Box that contains a collection of
 //info consists of the Text Headings and Title of each Box Stored
@@ -134,14 +135,26 @@ export default function BoxItem({ content, deleteBox }) {
       content: newContentArray,
     }));
   };
+  const updateTitle = (newTitle) => {
+    setBoxState((prevState) => {
+      return { ...prevState, title: newTitle };
+    });
+    console.log("Where", boxState);
+  };
+
+
 
   //User Create Box item
   return (
     <div onClick={handleClick} className={classList}>
       {!isOpen && (
         <>
-          <ThreeDotsMenu />
-          <h1>{boxState.title}</h1>
+          <ThreeDotsMenu
+            onDel={() => {
+              deleteBox(boxState);
+            }}
+          />
+          <BoxTitle>{boxState.title}</BoxTitle>
         </>
       )}
       {isOpen && (
@@ -151,6 +164,7 @@ export default function BoxItem({ content, deleteBox }) {
             key="title"
             contentType="title"
             content={{ text: boxState.title, boxId: boxState.boxId }}
+            updateTitle={updateTitle}
           />
           {boxState.content ? (
             <div className={BoxItemCSS.contentContainer}>

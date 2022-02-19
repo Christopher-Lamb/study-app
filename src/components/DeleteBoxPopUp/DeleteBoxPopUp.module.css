@@ -1,0 +1,20 @@
+.container {
+  position: absolute;
+  outline: 1px solid black;
+  z-index: 1;
+  top: 34px;
+  left: 58px;
+  background: white;
+  height: 50px;
+  width: 120px;
+}
+
+.item {
+  position: relative;
+  font-size: 17px;
+  top: 0px;
+  margin: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-left: 5px;
+}
