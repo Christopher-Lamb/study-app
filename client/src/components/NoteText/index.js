@@ -9,14 +9,14 @@ export default function NoteText({
 }) {
   const [elementState, setElementState] = useState(contentType);
   const [textState, setTextState] = useState(content.text);
-  const [editorElements, setEditorElements] = useState([]);
+  const [editorElement, setEditorElement] = useState([]);
   const [editingText, setEditingText] = useState(content.text);
   const [editorHeight, setEditorHeight] = useState();
   let editorClass = useRef();
   const editorRef = useRef();
   const textAreaRef = useRef();
   const textRef = useRef();
-  const currentScrollHeight = useRef(0);
+  // const currentScrollHeight = useRef(0);
 
   useEffect(() => {
     //Init Header or Text for note box
@@ -26,7 +26,7 @@ export default function NoteText({
     } else if (contentType === "heading" || contentType === "title") {
       editorClass.current = NoteTextCSS.editingHeading;
     }
-
+    console.log(`${content.text}`);
     // setEditorHeight(textReft);
     editorRef.current.className = NoteTextCSS.hidden;
     buildEditorTxt();
@@ -58,7 +58,7 @@ export default function NoteText({
         if (contentType === "title") {
           //change title to what was edited
           box.title = updatedText;
-          // console.log("box", box);
+          //
           //return box to the array
           return box;
         } else {
@@ -84,14 +84,18 @@ export default function NoteText({
   };
 
   // Handle Item Click For Editing a box
-  const handleClick = () => {
+  const handleClick = async () => {
+    console.log(contentType);
+    console.log(textRef);
     editorRef.current.classList = "";
-    textRef.current.className = NoteTextCSS.hidden;
+
+    if (textRef.current !== undefined) {
+      textRef.current.className = NoteTextCSS.hidden;
+    }
   };
 
-
   const pTag = () => {
-    // console.log(content.noteId)
+    console.log(textState);
     let array = textState.split("\n");
 
     const elementLayout = array.map((element, i) => {
@@ -151,13 +155,7 @@ export default function NoteText({
 
   //Formats the editable p tag so it matches the acutal p tags
   const buildEditorTxt = () => {
-    console.log(textState);
-    let splitArray = textState.split("\n");
-    console.log("splitArray", splitArray);
-    const htmlElements = splitArray.map((line, i) => {
-      return <div key={i}>{line}</div>;
-    });
-    setEditorElements(htmlElements);
+    setEditorElement(<div key={content.noteId}>{textState}</div>);
   };
 
   return (
@@ -177,7 +175,7 @@ export default function NoteText({
               setEditingText(textAreaRef.current.innerText);
             }}
           >
-            {editorElements}
+            {editorElement}
           </div>
           <br />
           <button

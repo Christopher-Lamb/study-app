@@ -19,35 +19,3 @@
   position: relative;
 }
 
-.plus {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: 0.2s ease-in-out;
-}
-.plus:hover {
-  cursor: pointer;
-  top: 45%;
-  transition: 0.2s ease-in-out;
-}
-
-.verticalLine {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 100px;
-  background: black;
-}
-
-.horizontalLine {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 20px;
-  background: black;
-}

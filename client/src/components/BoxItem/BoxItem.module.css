@@ -27,6 +27,7 @@
   min-height: 1500px !important;
   height: auto !important;
   top: 0px;
+  left: 0px;
   position: absolute !important;
   transition: 0.2s ease-in-out !important;
   border-radius: 0 !important;
@@ -36,4 +37,25 @@
 
 .contentContainer {
   width: 99vw;
+}
+
+.title {
+  font-size: 30px;
+  position: absolute;
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 190px;
+  height: auto;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+}
+
+.titleHover {
+  background-color: rgb(224, 224, 224);
+  font-weight: 400;
 }

@@ -5,6 +5,7 @@ import BoxItemCSS from "../BoxItem/BoxItem.module.css";
 import TestingInitLocalStorage from "../TestingInitLocalStorage";
 import BoxItem from "../BoxItem";
 import information from "../../Information.json";
+import AddBox from "../AddBox";
 
 export default function StorageBoxesContainer() {
   //Shitty Name
@@ -17,7 +18,6 @@ export default function StorageBoxesContainer() {
   }, []);
 
   useEffect(() => {
-    console.log("Change BoxState");
     getComponents();
   }, [boxesState]);
 
@@ -33,7 +33,7 @@ export default function StorageBoxesContainer() {
           <BoxItem key={box.boxId} content={box} deleteBox={handleBoxDelete} />
         );
       });
-      console.log(components);
+
       setBoxesComponentState(components);
     }
   };
@@ -60,15 +60,15 @@ export default function StorageBoxesContainer() {
   };
 
   const handleBoxDelete = (delBoxId) => {
-    // console.log(delBoxId);
+    //
     //Handles DB interaction
     // const storageBoxes = JSON.parse(localStorage.getItem("StorageBoxes"));
     const updatedStorageBoxes = boxesState.filter((box) => {
       if (box.boxId === delBoxId.boxId) {
         return;
-        // console.log("Box.BoxId if", box.boxId);
+        //
       } else {
-        // console.log("Box.BoxId else", box.boxId);
+        //
         return box;
       }
     });
@@ -85,14 +85,7 @@ export default function StorageBoxesContainer() {
         <TestingInitLocalStorage onInit={initLocalStorage} />
       </div> */}
       {/* Add Storage Box */}
-      <button onClick={handleAddStorageBtnClick}>
-        <div className={BoxItemCSS.storageBox}>
-          <div className={StorageBoxesContainerCSS.plus}>
-            <div className={StorageBoxesContainerCSS.verticalLine}></div>
-            <div className={StorageBoxesContainerCSS.horizontalLine}></div>
-          </div>
-        </div>
-      </button>
+      <AddBox onClick={handleAddStorageBtnClick} />
       {renderAddNewPopUp && (
         <NewBoxPopUp
           onExitPopUp={handleExitPopUp}

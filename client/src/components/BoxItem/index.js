@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BoxItemCSS from "../BoxItem/BoxItem.module.css";
 import ContentSelector from "../ContentSelector";
 import AddText from "../AddText";
@@ -38,16 +38,23 @@ export default function BoxItem({ content, deleteBox }) {
   };
 
   //On Submit of new Header Element from the Content Selector Component
-  const handleHeadingBtn = () => {
-    setNewComponentState(
+  const handleHeadingBtn = async () => {
+    await handleSelectorCancel();
+    await setNewComponentState(
       <AddText
         contentType={"heading"}
         boxId={content.boxId}
         handleSave={(newNoteContent) => {
+          let text = "";
+          if (newNoteContent.text === undefined) {
+            text = "";
+          } else {
+            text = newNoteContent.text;
+          }
           const newContentArray = boxState.content;
           newContentArray.push({
             noteId: newNoteContent.noteId,
-            header: newNoteContent.text,
+            header: text,
           });
           setBoxState((state) => ({
             ...state,
@@ -60,23 +67,29 @@ export default function BoxItem({ content, deleteBox }) {
   };
 
   //On Submit of new Text element
-  const handleTextBtn = () => {
-    setNewComponentState(
+  const handleTextBtn = async () => {
+    await handleSelectorCancel();
+    await setNewComponentState(
       <AddText
         contentType={"text"}
         boxId={content.boxId}
         handleSave={(newNoteContent) => {
+          let text = "";
+          if (newNoteContent.text === undefined) {
+            text = "";
+          } else {
+            text = newNoteContent.text;
+          }
           const newContentArray = boxState.content;
           newContentArray.push({
             noteId: newNoteContent.noteId,
-            text: newNoteContent.text,
+            text: text,
           });
           setBoxState((state) => ({
             ...state,
             content: newContentArray,
           }));
           handleSelectorCancel();
-          console.log("Save btn End");
         }}
       />
     );
@@ -122,7 +135,6 @@ export default function BoxItem({ content, deleteBox }) {
     //When a note hits a delete button loop through content array and remove that note
 
     const newContentArray = boxState.content.filter((note) => {
-      console.log(note.noteId);
       if (note.noteId === deleteId) {
         return;
       } else {
@@ -139,12 +151,26 @@ export default function BoxItem({ content, deleteBox }) {
     setBoxState((prevState) => {
       return { ...prevState, title: newTitle };
     });
-    console.log("Where", boxState);
   };
-
+  const titleRef = useRef();
   //User Create Box item
+  const onHover = () => {
+    if (!isOpen) {
+      titleRef.current.classList = `${BoxItemCSS.titleHover} ${BoxItemCSS.title}`;
+    }
+  };
+  const onHoverCancel = () => {
+    if (!isOpen) {
+      titleRef.current.classList = `${BoxItemCSS.title}`;
+    }
+  };
   return (
-    <div onClick={handleClick} className={classList} >
+    <div
+      onClick={handleClick}
+      onMouseEnter={onHover}
+      onMouseLeave={onHoverCancel}
+      className={classList}
+    >
       {!isOpen && (
         <>
           <ThreeDotsMenu
@@ -152,7 +178,9 @@ export default function BoxItem({ content, deleteBox }) {
               deleteBox(boxState);
             }}
           />
-          <BoxTitle>{boxState.title}</BoxTitle>
+          <BoxTitle ref={titleRef} className={BoxItemCSS.title}>
+            {boxState.title}
+          </BoxTitle>
         </>
       )}
       {isOpen && (

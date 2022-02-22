@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import addTextCSS from "./addText.module.css";
+import React, { useState, useRef, useEffect } from "react";
+import CSS from "./addText.module.css";
 import { returnUniqueNum } from "../../hooks/dbFunctions";
 
 export default function AddText({
@@ -10,19 +10,24 @@ export default function AddText({
   closeBtn,
 }) {
   const [textarea, setTextareaState] = useState(text);
+  const [editorClass, setEditorClass] = useState(text);
+  const textAreaRef = useRef();
 
+  useEffect(() => {
+    //Init Header or Text for note box
 
-  const handleInput = (event) => {
-    const target = event.target;
-    const value = target.value;
-    setTextareaState(value);
-  };
+    if (contentType === "text") {
+      setEditorClass(CSS.editingTextarea);
+    } else if (contentType === "heading" || contentType === "title") {
+      setEditorClass(CSS.editingHeading);
+    }
+  }, []);
 
   //Take text area and add to contents array
   const updateDB = () => {
     //Get INformation from db
     const storageBoxes = JSON.parse(localStorage.getItem("StorageBoxes"));
-    // console.log("StorageBoxes", storageBoxes);
+    //
     //Finds the note we are looking for then checks what type we are adding
     const updatedArray = storageBoxes.map((box) => {
       //If the current box we are in matches the current box in loop
@@ -31,13 +36,14 @@ export default function AddText({
         const noteIdArray = box.content.map((note) => {
           return note.noteId;
         });
-        // console.log("noteIdArray: ", noteIdArray);
+        //
 
         const id = returnUniqueNum(noteIdArray);
-        
+
         //pass child to parent \[textarea, id]
         //
-        handleSave({"noteId":id,"text":textarea});
+
+        handleSave({ noteId: id, text: textarea });
 
         if (contentType === "heading") {
           box.content.push({ noteId: id, header: textarea });
@@ -57,18 +63,18 @@ export default function AddText({
     updateDB();
   };
   return (
-    <div className={addTextCSS.container}>
-      <textarea
-        defaultValue={textarea}
-        onChange={(e) => {
-          handleInput(e);
+    <div className={CSS.container}>
+      <div
+        ref={textAreaRef}
+        contentEditable={true}
+        suppressContentEditableWarning={true}
+        className={`${editorClass}`}
+        onInput={() => {
+          setTextareaState(textAreaRef.current.innerText);
         }}
-      ></textarea>
-      <button onClick={handleClick} className={addTextCSS.btn}>
+      ></div>
+      <button onClick={handleClick} className={CSS.btn}>
         Save
-      </button>
-      <button onClick={closeBtn} className={addTextCSS.btn}>
-        X
       </button>
     </div>
   );

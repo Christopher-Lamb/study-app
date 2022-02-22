@@ -8,15 +8,15 @@ export default function ContentSelector({
 }) {
   return (
     <div className={ContentSelectorCSS.container}>
-      <button onClick={createHeader} className={ContentSelectorCSS.btn}>
-        H
-      </button>
-      <button onClick={createText} className={ContentSelectorCSS.btn}>
-        T
-      </button>
-      <button onClick={cancelBtn} className={ContentSelectorCSS.btn}>
-        X
-      </button>
+      <p onClick={createHeader} className={ContentSelectorCSS.btn}>
+        Header
+      </p>
+      <p onClick={createText} className={ContentSelectorCSS.btn}>
+        Text
+      </p>
+      <p onClick={cancelBtn} className={ContentSelectorCSS.btn}>
+        Cancel
+      </p>
       {/* <div className={ContentSelectorCSS.headerBtn}></div> */}
     </div>
   );

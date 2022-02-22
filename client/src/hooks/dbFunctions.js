@@ -7,15 +7,15 @@ export function returnUniqueNum(arrayOfIds) {
   }
 
   //Sort the array
-  // console.log("Before Sort",arrayOfIds)
+  //
   arrayOfIds.sort(function (a, b) {
     return a - b;
   });
-  // console.log("After Sort",arrayOfIds);
+  //
 
   try {
     for (let i = 0; i < range; i++) {
-      // console.log(arrayOfIds[i]);
+      //
       //The first in check Num
       const startNum = arrayOfIds[i] + 1;
       if (arrayOfIds[0] === 1) {
@@ -27,9 +27,7 @@ export function returnUniqueNum(arrayOfIds) {
         return startNum;
       }
     }
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 //AddOne to Db
