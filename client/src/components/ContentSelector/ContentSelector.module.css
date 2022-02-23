@@ -23,3 +23,14 @@
   background: rgb(247, 247, 247);
   transform: translateY(3px);
 }
+
+.btnActive {
+  height: 20px;
+  font-family: monospace;
+  font-size: 17px;
+  margin: 0 10px 0 0;
+  padding: 8px 20px 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background: rgb(247, 247, 247);
+  transform: translateY(3px);
+}

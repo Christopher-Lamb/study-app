@@ -26,7 +26,9 @@ export default function NoteText({
     } else if (contentType === "heading" || contentType === "title") {
       editorClass.current = NoteTextCSS.editingHeading;
     }
-    console.log(`${content.text}`);
+    console.log("textState", textState);
+    if (textState === "") {
+    }
     // setEditorHeight(textReft);
     editorRef.current.className = NoteTextCSS.hidden;
     buildEditorTxt();
@@ -178,47 +180,49 @@ export default function NoteText({
             {editorElement}
           </div>
           <br />
-          <button
-            className={NoteTextCSS.btn}
-            onClick={(e) => {
-              e.stopPropagation();
-              if (editingText !== textState) {
-                let answer = window.confirm(
-                  "You didnt save are you sure you want to close the editor without saving??"
-                );
-                if (answer) {
+          <div className={NoteTextCSS.btnContainer}>
+            <button
+              className={NoteTextCSS.btn}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+                if (editingText !== textState) {
+                  let answer = window.confirm(
+                    "You didnt save are you sure you want to close the editor without saving??"
+                  );
+                  if (answer) {
+                    editorRef.current.className = NoteTextCSS.hidden;
+                    textRef.current.className = "";
+                    setEditingText(textState);
+                    setEditorHeight(textRef.current.clientHeight);
+                  } else {
+                  }
+                } else {
                   editorRef.current.className = NoteTextCSS.hidden;
                   textRef.current.className = "";
-                  setEditingText(textState);
                   setEditorHeight(textRef.current.clientHeight);
-                } else {
                 }
-              } else {
-                editorRef.current.className = NoteTextCSS.hidden;
-                textRef.current.className = "";
-                setEditorHeight(textRef.current.clientHeight);
-              }
-            }}
-          >
-            Close Editor
-          </button>
-          <button
-            className={NoteTextCSS.btn}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleSave(textAreaRef.current.innerText);
-              if (contentType === "title") {
-                updateTitle(editingText);
-              }
-            }}
-          >
-            Save
-          </button>
-          {contentType !== "title" && (
-            <button onClick={handleDelete} className={NoteTextCSS.btn}>
-              Delete
+              }}
+            >
+              Close Editor
             </button>
-          )}
+            <button
+              className={NoteTextCSS.btn}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+                handleSave(textAreaRef.current.innerText);
+                if (contentType === "title") {
+                  updateTitle(editingText);
+                }
+              }}
+            >
+              Save
+            </button>
+            {contentType !== "title" && (
+              <button onClick={handleDelete} className={NoteTextCSS.btn}>
+                Delete
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </>

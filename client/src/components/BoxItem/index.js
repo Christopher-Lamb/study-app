@@ -164,6 +164,12 @@ export default function BoxItem({ content, deleteBox }) {
       titleRef.current.classList = `${BoxItemCSS.title}`;
     }
   };
+
+  const handleSelector = (type) => {
+    //Get The Type from content Selector component
+    //Then create a note using Add Text components
+  };
+
   return (
     <div
       onClick={handleClick}
@@ -175,7 +181,7 @@ export default function BoxItem({ content, deleteBox }) {
         <>
           <ThreeDotsMenu
             onDel={() => {
-              deleteBox(boxState);
+              deleteBox(boxState.boxId);
             }}
           />
           <BoxTitle ref={titleRef} className={BoxItemCSS.title}>
@@ -185,7 +191,9 @@ export default function BoxItem({ content, deleteBox }) {
       )}
       {isOpen && (
         <>
-          <button onClick={handleExit}>X</button>
+          <button className={BoxItemCSS.closeBoxBtn} onClick={handleExit}>
+            Close
+          </button>
           <NoteText
             key="title"
             contentType="title"
@@ -197,9 +205,8 @@ export default function BoxItem({ content, deleteBox }) {
               {workingContentArray}
               {isOpen && (
                 <ContentSelector
-                  createHeader={handleHeadingBtn}
-                  createText={handleTextBtn}
-                  cancelBtn={handleSelectorCancel}
+                  onSelected={handleSelector}
+                  onCancel={handleSelectorCancel}
                 />
               )}
               {newComponent}

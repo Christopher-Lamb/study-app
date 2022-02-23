@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import CSS from "./addText.module.css";
-import { returnUniqueNum } from "../../hooks/dbFunctions";
+import { returnUniqueNum } from "../../utils/dbFunctions";
 
 export default function AddText({
   boxId,

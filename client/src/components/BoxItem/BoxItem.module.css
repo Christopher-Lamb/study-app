@@ -59,3 +59,24 @@
   background-color: rgb(224, 224, 224);
   font-weight: 400;
 }
+
+.closeBoxBtn {
+  padding: 10px 16px;
+  background: #0C76B1;
+  animation: gradient 7s ease infinite;
+  background-size: 400% 400%;
+  color: white;
+  border-radius: 4px;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

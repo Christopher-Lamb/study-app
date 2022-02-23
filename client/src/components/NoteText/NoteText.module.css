@@ -1,5 +1,5 @@
 .container {
-  padding: 20px;
+  padding: 5px 20px 5px 20px;
   width: clamp(375px, 70%, 70%);
 }
 
@@ -37,13 +37,25 @@
   border: none;
 }
 
+.btnContainer {
+  display: flex;
+}
+
 .btn {
-  border: 1px solid black;
-  padding: 2px;
+  box-shadow: rgba(0, 0, 0, 0.137) 0px 3px 8px;
+  background: #0c76b1;
+  animation: gradient 20s ease infinite;
+  background-size: 400% 400%;
+  color: white;
+  font-size: 14px;
+  font-family: Roboto, Noto, sans-serif;
+  border-radius: 4px;
+  padding: 10px 16px;
+  margin: 0 5px;
 }
 
 .btn:active {
-  background: rgb(224, 224, 224);
+  background: #0f8dd2;
   transform: translateY(2px);
 }
 
@@ -62,4 +74,16 @@
 
 .hidden {
   display: none;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

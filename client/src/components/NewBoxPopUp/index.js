@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { returnUniqueNum } from "../../hooks/dbFunctions";
 import CSS from "./NewBoxPopUp.module.css";
+import storageFunct from "../../utils/localStorageFunct";
 
 export default function NewBoxPopUp({ onExitPopUp, onCreate }) {
   const [title, setTitle] = useState("");
@@ -11,33 +11,9 @@ export default function NewBoxPopUp({ onExitPopUp, onCreate }) {
     setTitle(value);
   };
 
-  //Read and Edit Json as of Now but in future Google docs and then Mongo or MySQL
   const addToDB = () => {
-    const informationString = localStorage.getItem("StorageBoxes");
-    const informationParsed = JSON.parse(informationString);
-
-    //Gets the id of last item stored in local Storage -- Temporary --
-    //
-    //If localStorage empty
-    if (informationParsed === null) {
-      const newID = 0;
-      const newArray = [{ boxId: newID, title: title, content: [] }];
-      localStorage.setItem("StorageBoxes", JSON.stringify(newArray));
-    } else {
-      //Else local storage exists
-      const idArray = informationParsed.map((box) => {
-        return box.boxId;
-      });
-      const newID = returnUniqueNum(idArray);
-
-      //New Box/List Item
-      //
-      const newBox = { boxId: newID, title: title, content: [] };
-
-      informationParsed.push(newBox);
-      //Send back to localStorage
-      localStorage.setItem("StorageBoxes", JSON.stringify(informationParsed));
-    }
+    storageFunct.addBox(title);
+    onCreate();
   };
 
   return (
@@ -54,10 +30,7 @@ export default function NewBoxPopUp({ onExitPopUp, onCreate }) {
         ></input>
         <button
           className={CSS.createBtn}
-          onClick={() => {
-            addToDB();
-            onCreate();
-          }}
+          onClick={addToDB}
         >
           <p>Create New Box</p>
         </button>
