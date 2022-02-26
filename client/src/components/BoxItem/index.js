@@ -13,21 +13,16 @@ export default function BoxItem({ content, deleteBox }) {
   const [classList, setClassList] = useState(`${BoxItemCSS.storageBox}`);
   const [isOpen, setIsOpen] = useState(false);
   const [boxState, setBoxState] = useState(content);
-  const [newComponent, setNewComponentState] = useState();
-  const [workingContentArray, setWorkingContentArray] = useState([]);
 
-  useEffect(() => {
-    noteTextBuilder();
-  }, []);
+  // useEffect(() => {
+  //   noteTextBuilder();
+  // }, []);
   //Handles Open for Box clicked
   const handleClick = () => {
     //If box is closed Open It
     if (isOpen) return;
-
     setClassList(`${BoxItemCSS.storageBox} ${BoxItemCSS.storageBoxOpen}`);
     setIsOpen(true);
-    noteTextBuilder();
-
     //If box is able to be opened and is open
   };
 
@@ -56,45 +51,13 @@ export default function BoxItem({ content, deleteBox }) {
       ...state,
       notes: newContentArray,
     }));
-    noteTextBuilder();
-  };
-  //On Submit of new Header Element from the Content Selector Component
-  const handleHeadingBtn = async () => {
-    await handleSelectorCancel();
-    await setNewComponentState(
-      <AddText
-        contentType={"heading"}
-        boxId={content.boxId}
-        handleSave={(newNoteContent) => {
-          let text = "";
-          if (newNoteContent.text === undefined) {
-            text = "";
-          } else {
-            text = newNoteContent.text;
-          }
-          const newContentArray = boxState.notes;
-          newContentArray.push({
-            noteId: newNoteContent.noteId,
-            header: text,
-          });
-          setBoxState((state) => ({
-            ...state,
-            content: newContentArray,
-          }));
-          handleSelectorCancel();
-        }}
-      />
-    );
-  };
-
-  const handleSelectorCancel = () => {
-    setNewComponentState(null);
   };
 
   //
   const noteTextBuilder = () => {
+    let notes = [];
     if (boxState.notes) {
-      const notes = boxState.notes.map((note) => {
+      notes = boxState.notes.map((note) => {
         return (
           <NoteText
             key={note.noteId}
@@ -104,30 +67,31 @@ export default function BoxItem({ content, deleteBox }) {
               boxId: boxState.boxId,
               noteId: note.noteId,
             }}
-            unRender={deleteFromArray}
+            onDel={deleteNote}
           />
         );
       });
-
-      setWorkingContentArray(notes);
     }
+    return notes;
   };
 
-  const deleteFromArray = (deleteId) => {
+  const deleteNote = (deleteId) => {
     //When a note hits a delete button loop through content array and remove that note
 
-    const newContentArray = boxState.content.filter((note) => {
+    storageFunct.delNote(content.boxId, deleteId);
+    const newContentArray = boxState.notes.filter((note) => {
       if (note.noteId === deleteId) {
         return;
       } else {
         return note;
       }
     });
-    //This updates the content state array with new and old information
+    //This updates the notes state array with new and old information
     setBoxState((state) => ({
       ...state,
-      content: newContentArray,
+      notes: newContentArray,
     }));
+    // setBoxState({ notes: newContentArray });
   };
   const updateTitle = (newTitle) => {
     setBoxState((prevState) => {
@@ -189,14 +153,9 @@ export default function BoxItem({ content, deleteBox }) {
           />
 
           <div className={BoxItemCSS.contentContainer}>
-            {workingContentArray}
+            {noteTextBuilder()}
             {isOpen && (
-              <ContentSelector
-                onSelected={handleSelector}
-                onCancel={handleSelectorCancel}
-                box={boxState.boxId}
-                onSave={handleSave}
-              />
+              <ContentSelector box={boxState.boxId} onSave={handleSave} />
             )}
           </div>
         </>

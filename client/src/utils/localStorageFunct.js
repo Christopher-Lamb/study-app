@@ -103,23 +103,22 @@ const storageFunct = {
     const updatedArray = storageBoxes.map((box) => {
       //If the current box we are in matches the current box in loop
 
-      if (box.boxId === note.boxId) {
+      if (box.boxId === boxId) {
         //If its the title element
         const updatedNotes = box.notes.filter((note) => {
-          if (note.noteId === note.noteId) {
+          if (note.noteId === noteId) {
             return;
           } else {
             return note;
           }
         });
         box.notes = updatedNotes;
-
         //Build Id of notes
       }
       return box;
     });
 
-    console.log();
+    setLocal(updatedArray);
   },
   updateNote: function (boxId, noteId, text, type) {
     const storageBoxes = getLocal();

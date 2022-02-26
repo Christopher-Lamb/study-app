@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import CSS from "./ContentSelector.module.css";
 import AddText from "../AddText";
 
-export default function ContentSelector({ box, onCancel, onSave }) {
+export default function ContentSelector({ box, onSave }) {
   const [textareaActive, setTextareaActive] = useState(false);
   const [onSelected, setOnSelected] = useState("text");
   const header = useRef();
@@ -28,7 +28,7 @@ export default function ContentSelector({ box, onCancel, onSave }) {
     text.current.className = CSS.btn;
     header.current.className = CSS.btn;
     setTextareaActive(false);
-    onCancel();
+    
   };
 
   return (
