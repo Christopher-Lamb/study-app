@@ -5,6 +5,8 @@ import BoxItemCSS from "../BoxItem/BoxItem.module.css";
 import TestingInitLocalStorage from "../TestingInitLocalStorage";
 import BoxItem from "../BoxItem";
 import information from "../../Information.json";
+import AddBox from "../AddBox";
+import storageFunct from "../../utils/localStorageFunct";
 
 export default function StorageBoxesContainer() {
   //Shitty Name
@@ -17,12 +19,11 @@ export default function StorageBoxesContainer() {
   }, []);
 
   useEffect(() => {
-    console.log("Change BoxState");
     getComponents();
   }, [boxesState]);
 
   const initLocalStorage = () => {
-    localStorage.setItem("StorageBoxes", JSON.stringify(information));
+    storageFunct.initDemo();
     setStorageBoxes();
   };
 
@@ -33,7 +34,7 @@ export default function StorageBoxesContainer() {
           <BoxItem key={box.boxId} content={box} deleteBox={handleBoxDelete} />
         );
       });
-      console.log(components);
+
       setBoxesComponentState(components);
     }
   };
@@ -47,7 +48,7 @@ export default function StorageBoxesContainer() {
   };
   // Update Information Boxes State and local Storage
   const setStorageBoxes = () => {
-    const array = JSON.parse(localStorage.getItem("StorageBoxes"));
+    const array = storageFunct.getAllStorage();
 
     setBoxesState(array);
     getComponents();
@@ -55,44 +56,25 @@ export default function StorageBoxesContainer() {
 
   //Clear LocalStorage
   const clearLocalStorage = () => {
-    localStorage.removeItem("StorageBoxes");
+    storageFunct.removeAllStorage();
     setBoxesState([]);
   };
 
   const handleBoxDelete = (delBoxId) => {
-    // console.log(delBoxId);
-    //Handles DB interaction
     // const storageBoxes = JSON.parse(localStorage.getItem("StorageBoxes"));
-    const updatedStorageBoxes = boxesState.filter((box) => {
-      if (box.boxId === delBoxId.boxId) {
-        return;
-        // console.log("Box.BoxId if", box.boxId);
-      } else {
-        // console.log("Box.BoxId else", box.boxId);
-        return box;
-      }
-    });
-
-    setBoxesState(updatedStorageBoxes);
+    const updatedBoxes = storageFunct.delBox(delBoxId);
+    setBoxesState(updatedBoxes);
     getComponents();
-
-    localStorage.setItem("StorageBoxes", JSON.stringify(updatedStorageBoxes));
   };
 
   return (
     <div className={StorageBoxesContainerCSS.container}>
+      <button onMouseDown={initLocalStorage}>init</button>
       {/* <div className={BoxItemCSS.storageBox}>
         <TestingInitLocalStorage onInit={initLocalStorage} />
       </div> */}
       {/* Add Storage Box */}
-      <button onClick={handleAddStorageBtnClick}>
-        <div className={BoxItemCSS.storageBox}>
-          <div className={StorageBoxesContainerCSS.plus}>
-            <div className={StorageBoxesContainerCSS.verticalLine}></div>
-            <div className={StorageBoxesContainerCSS.horizontalLine}></div>
-          </div>
-        </div>
-      </button>
+      <AddBox onClick={handleAddStorageBtnClick} />
       {renderAddNewPopUp && (
         <NewBoxPopUp
           onExitPopUp={handleExitPopUp}

@@ -1,0 +1,56 @@
+.box {
+  box-sizing: border-box;
+  height: 200px;
+  min-height: auto;
+  width: 200px;
+  overflow: hidden;
+  margin: 10px;
+  border-radius: 3%;
+  transition: 0.2s ease-in-out;
+  position: relative;
+  padding: 20px;
+  background: rgb(253, 253, 253);
+  transition: 0.2s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+}
+
+.plus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.2s ease-in-out;
+}
+.box:hover .plus {
+  top: 45%;
+}
+.box:hover .verticalLine {
+  width: 24px;
+  height: 120px;
+}
+.box:hover .horizontalLine {
+  width: 120px;
+  height: 24px;
+}
+
+.verticalLine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 20px;
+  min-height: 100px;
+  background: black;
+}
+
+.horizontalLine {
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 20px;
+  background: black;
+}

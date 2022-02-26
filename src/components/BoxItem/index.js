@@ -5,6 +5,7 @@ import AddText from "../AddText";
 import NoteText from "../NoteText";
 import ThreeDotsMenu from "../ThreeDotsMenu";
 import BoxTitle from "../BoxTitle";
+import storageFunct from "../../utils/localStorageFunct";
 
 // Single Stored Box that contains a collection of
 //info consists of the Text Headings and Title of each Box Stored
@@ -17,7 +18,7 @@ export default function BoxItem({ content, deleteBox }) {
 
   useEffect(() => {
     noteTextBuilder();
-  }, [boxState]);
+  }, []);
   //Handles Open for Box clicked
   const handleClick = () => {
     //If box is closed Open It
@@ -37,46 +38,50 @@ export default function BoxItem({ content, deleteBox }) {
     }
   };
 
+  const handleSave = (newNote) => {
+    const newId = storageFunct.addNote(
+      newNote.type,
+      newNote.text,
+      content.boxId
+    );
+
+    console.log(boxState);
+    const newContentArray = boxState.notes;
+    newContentArray.push({
+      noteId: newId,
+      type: newNote.type,
+      text: newNote.text,
+    });
+    setBoxState((state) => ({
+      ...state,
+      notes: newContentArray,
+    }));
+    noteTextBuilder();
+  };
   //On Submit of new Header Element from the Content Selector Component
-  const handleHeadingBtn = () => {
-    setNewComponentState(
+  const handleHeadingBtn = async () => {
+    await handleSelectorCancel();
+    await setNewComponentState(
       <AddText
         contentType={"heading"}
         boxId={content.boxId}
         handleSave={(newNoteContent) => {
-          const newContentArray = boxState.content;
+          let text = "";
+          if (newNoteContent.text === undefined) {
+            text = "";
+          } else {
+            text = newNoteContent.text;
+          }
+          const newContentArray = boxState.notes;
           newContentArray.push({
             noteId: newNoteContent.noteId,
-            header: newNoteContent.text,
+            header: text,
           });
           setBoxState((state) => ({
             ...state,
             content: newContentArray,
           }));
           handleSelectorCancel();
-        }}
-      />
-    );
-  };
-
-  //On Submit of new Text element
-  const handleTextBtn = () => {
-    setNewComponentState(
-      <AddText
-        contentType={"text"}
-        boxId={content.boxId}
-        handleSave={(newNoteContent) => {
-          const newContentArray = boxState.content;
-          newContentArray.push({
-            noteId: newNoteContent.noteId,
-            text: newNoteContent.text,
-          });
-          setBoxState((state) => ({
-            ...state,
-            content: newContentArray,
-          }));
-          handleSelectorCancel();
-          console.log("Save btn End");
         }}
       />
     );
@@ -88,24 +93,14 @@ export default function BoxItem({ content, deleteBox }) {
 
   //
   const noteTextBuilder = () => {
-    if (boxState.content) {
-      const notes = boxState.content.map((note) => {
-        let contentType = "";
-        let text = "";
-        if (note.header) {
-          contentType = "heading";
-          text = note.header;
-        } else if (note.text) {
-          contentType = "text";
-          text = note.text;
-        }
+    if (boxState.notes) {
+      const notes = boxState.notes.map((note) => {
         return (
           <NoteText
-            id={`box-${boxState.boxId}-note-${note.noteId}`}
             key={note.noteId}
-            contentType={contentType}
-            content={{
-              text: text,
+            note={{
+              type: note.type,
+              text: note.text,
               boxId: boxState.boxId,
               noteId: note.noteId,
             }}
@@ -122,7 +117,6 @@ export default function BoxItem({ content, deleteBox }) {
     //When a note hits a delete button loop through content array and remove that note
 
     const newContentArray = boxState.content.filter((note) => {
-      console.log(note.noteId);
       if (note.noteId === deleteId) {
         return;
       } else {
@@ -139,46 +133,72 @@ export default function BoxItem({ content, deleteBox }) {
     setBoxState((prevState) => {
       return { ...prevState, title: newTitle };
     });
-    console.log("Where", boxState);
+  };
+  const titleRef = useRef();
+  //User Create Box item
+  const onHover = () => {
+    if (!isOpen) {
+      titleRef.current.classList = `${BoxItemCSS.titleHover} ${BoxItemCSS.title}`;
+    }
+  };
+  const onHoverCancel = () => {
+    if (!isOpen) {
+      titleRef.current.classList = `${BoxItemCSS.title}`;
+    }
   };
 
+  const handleSelector = (type) => {
+    //Get The Type from content Selector component
+    //Then create a note using Add Text components
+  };
 
-
-  //User Create Box item
   return (
-    <div onClick={handleClick} className={classList}>
+    <div
+      onClick={handleClick}
+      onMouseEnter={onHover}
+      onMouseLeave={onHoverCancel}
+      className={classList}
+    >
       {!isOpen && (
         <>
           <ThreeDotsMenu
             onDel={() => {
-              deleteBox(boxState);
+              deleteBox(boxState.boxId);
             }}
           />
-          <BoxTitle>{boxState.title}</BoxTitle>
+          <BoxTitle ref={titleRef} className={BoxItemCSS.title}>
+            {boxState.title}
+          </BoxTitle>
         </>
       )}
       {isOpen && (
         <>
-          <button onClick={handleExit}>X</button>
+          <button className={BoxItemCSS.closeBoxBtn} onClick={handleExit}>
+            Close
+          </button>
           <NoteText
             key="title"
             contentType="title"
-            content={{ text: boxState.title, boxId: boxState.boxId }}
+            note={{
+              type: "title",
+              text: boxState.title,
+              boxId: boxState.boxId,
+              noteId: "title",
+            }}
             updateTitle={updateTitle}
           />
-          {boxState.content ? (
-            <div className={BoxItemCSS.contentContainer}>
-              {workingContentArray}
-              {isOpen && (
-                <ContentSelector
-                  createHeader={handleHeadingBtn}
-                  createText={handleTextBtn}
-                  cancelBtn={handleSelectorCancel}
-                />
-              )}
-              {newComponent}
-            </div>
-          ) : null}
+
+          <div className={BoxItemCSS.contentContainer}>
+            {workingContentArray}
+            {isOpen && (
+              <ContentSelector
+                onSelected={handleSelector}
+                onCancel={handleSelectorCancel}
+                box={boxState.boxId}
+                onSave={handleSave}
+              />
+            )}
+          </div>
         </>
       )}
     </div>
