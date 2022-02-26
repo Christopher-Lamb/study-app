@@ -1,230 +1,241 @@
 import React, { useEffect, useRef, useState } from "react";
 import NoteTextCSS from "./NoteText.module.css";
+import storageFunct from "../../utils/localStorageFunct";
 
-export default function NoteText({
-  content,
-  contentType,
-  unRender,
-  updateTitle,
-}) {
-  const [elementState, setElementState] = useState(contentType);
-  const [textState, setTextState] = useState(content.text);
-  const [editorElement, setEditorElement] = useState([]);
-  const [editingText, setEditingText] = useState(content.text);
-  const [editorHeight, setEditorHeight] = useState();
-  let editorClass = useRef();
-  const editorRef = useRef();
-  const textAreaRef = useRef();
-  const textRef = useRef();
-  // const currentScrollHeight = useRef(0);
+//First note is rendered
+//The editor takes the height from the init note
+//Whenever the text state is changed change the displayed items
+//also when text state is changed apply height
 
+const Editor = React.forwardRef(({ text, onClose, type, onSave }, ref) => {
+  const [editorState, setEditorState] = useState();
+  const [textState, setTextState] = useState(text);
+  const textareaRef = useRef();
   useEffect(() => {
-    //Init Header or Text for note box
-
-    if (contentType === "text") {
-      editorClass.current = NoteTextCSS.editingTextarea;
-    } else if (contentType === "heading" || contentType === "title") {
-      editorClass.current = NoteTextCSS.editingHeading;
+    switch (type) {
+      case "text":
+        textareaRef.current.className = NoteTextCSS.editingTextarea;
+        break;
+      case "heading":
+        textareaRef.current.className = NoteTextCSS.editingHeading;
+        break;
+      case "title":
+        textareaRef.current.className = NoteTextCSS.editingHeading;
+        break;
     }
-    console.log("textState", textState);
-    if (textState === "") {
-    }
-    // setEditorHeight(textReft);
-    editorRef.current.className = NoteTextCSS.hidden;
     buildEditorTxt();
   }, []);
-
-  const contentChecker = () => {
-    //switch statement would work better i think
-    if (elementState === "editor") {
-      return;
-    } else if (elementState === "heading") {
-      return hTag;
-    } else if (elementState === "text") {
-      return pTag();
-    } else if (elementState === "title") {
-      return title;
-    }
+  const innerHtmlFormatter = (htmlString) => {
+    //Replace every /p wiith except the last one
+    const noDiv = htmlString.replaceAll("<div>", "");
+    const noDivSlash = noDiv.replaceAll("</div>", "");
+    const noP = noDivSlash.replaceAll("<p>", "");
+    const noPSlash = noP.replaceAll("</p>", "\n");
+    const changeSpace = noPSlash.replaceAll("&nbsp;", " ");
+    const changeAmp = changeSpace.replaceAll("&amp;", "&");
+    const changeLT = changeAmp.replaceAll("&lt;", "<");
+    const changeGT = changeLT.replaceAll("&gt;", ">");
+    const changeBr = changeGT.replaceAll("<br>", "\n");
+    const StrArr = changeBr.split(/(?=[\n])|(?<=[\n])/g);
+    StrArr.pop();
+    const finalStr = StrArr.join("");
+    return finalStr;
   };
 
-  //
-  const handleSave = (updatedText) => {
-    setTextState(updatedText);
-    //Get INformation from db
-    const storageBoxes = JSON.parse(localStorage.getItem("StorageBoxes"));
-    //Finds the note we are looking for then checks what type we are adding
-    const updatedArray = storageBoxes.map((box) => {
-      //If the current box we are in matches the current box in loop
-      if (box.boxId === content.boxId) {
-        //If its the title element
-        if (contentType === "title") {
-          //change title to what was edited
-          box.title = updatedText;
-          //
-          //return box to the array
-          return box;
-        } else {
-          const updatedNotes = box.content.map((note) => {
-            if (note.noteId === content.noteId) {
-              if (contentType === "heading") {
-                return { noteId: content.noteId, header: updatedText };
-              } else if (contentType === "text") {
-                return { noteId: content.noteId, text: updatedText };
-              }
-            } else {
-              return note;
-            }
-          });
-          box.content = updatedNotes;
-        }
-        //Build Id of notes
-      }
-      return box;
-    });
-    localStorage.setItem("StorageBoxes", JSON.stringify(updatedArray));
-    // setElementState(<p>{updatedText}</p>);
-  };
-
-  // Handle Item Click For Editing a box
-  const handleClick = async () => {
-    console.log(contentType);
-    console.log(textRef);
-    editorRef.current.classList = "";
-
-    if (textRef.current !== undefined) {
-      textRef.current.className = NoteTextCSS.hidden;
-    }
-  };
-
-  const pTag = () => {
-    console.log(textState);
+  //Formats the editable p tag so it matches the acutal p tags
+  const buildEditorTxt = () => {
     let array = textState.split("\n");
-
     const elementLayout = array.map((element, i) => {
+      if (element === "") {
+        return <br key={i} />;
+      }
+      return <p key={i}>{element}</p>;
+    });
+
+    //Render ediitor in divs so that you can edit it easier also let it account for \n / multips \ns
+    setEditorState(<div>{elementLayout}</div>);
+  };
+  return (
+    <div className={NoteTextCSS.container}>
+      <div ref={ref}>
+        <p>Editing</p>
+        <div
+          ref={textareaRef}
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+        >
+          {editorState}
+        </div>
+        <br />
+        <div className={NoteTextCSS.btnContainer}>
+          <button
+            className={NoteTextCSS.btn}
+            onMouseDown={(e) => {
+              const edited = innerHtmlFormatter(textareaRef.current.innerHTML);
+              if (edited !== textState) {
+                //If input is changed
+                let answer = window.confirm(
+                  "You didnt save would you still like to close?"
+                );
+                if (answer) {
+                  //If they dont wanna save lose the changes and close
+                  onClose();
+                }
+              } else {
+                onClose();
+              }
+            }}
+          >
+            Close Editor
+          </button>
+          <button
+            className={NoteTextCSS.btn}
+            onMouseDown={(e) => {
+              const edited = innerHtmlFormatter(textareaRef.current.innerHTML);
+              setTextState(edited);
+              onSave(edited);
+            }}
+          >
+            Save
+          </button>
+          {type !== "title" && (
+            <button onClick={() => {}} className={NoteTextCSS.btn}>
+              Delete
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+});
+
+const Text = React.forwardRef(({ text }, ref) => {
+  // (text)
+  const pTag = () => {
+    let array = text.split("\n");
+    const elementLayout = array.map((element, i) => {
+      if (element === "") {
+        return <br key={i} />;
+      }
       return (
         <p className={NoteTextCSS.pTag} key={i}>
           {element}
         </p>
       );
     });
+    // (elementLayout);
     return (
-      <div ref={textRef} className={NoteTextCSS.pTagContainer}>
+      <div ref={ref} className={NoteTextCSS.pTagContainer}>
         {elementLayout}
       </div>
     );
     // return <p className={NoteTextCSS.text}> {textState}</p>;
   };
-  const hTag = (
-    <h2 ref={textRef} className={NoteTextCSS.headingTag}>
-      {textState}
-    </h2>
-  );
 
-  const title = (
-    <h1 ref={textRef} className={NoteTextCSS.title}>
-      {textState}
-    </h1>
-  );
+  return <>{pTag()}</>;
+});
+
+const Title = React.forwardRef(({ text }, ref) => {
+  return <h1 ref={ref}>{text}</h1>;
+});
+
+const Heading = React.forwardRef(({ text }, ref) => {
+  return <h2 ref={ref}>{text}</h2>;
+});
+
+export default function NoteText({ id, note, unRender, updateTitle }) {
+  const [isEditingState, setIsEditingState] = useState(false);
+  const [textState, setTextState] = useState(note.text);
+  const [editorElement, setEditorElement] = useState();
+  const [editingText, setEditingText] = useState(note.text);
+  // const [editorHeight, setEditorHeight] = useState();
+  let editorClass = useRef();
+  const editorRef = useRef();
+  const textAreaRef = useRef();
+  const noteRef = useRef();
+
+  //We need to export height of the component T H T  after each save and set it the height of the editor ref also do that on init
 
   const handleDelete = () => {
-    //Definitaly not dry but you get the point ok
-    //Get INformation from db
-    const storageBoxes = JSON.parse(localStorage.getItem("StorageBoxes"));
-
-    //Finds the note we are looking for then checks what type we are adding
-    const updatedArray = storageBoxes.map((box) => {
-      //If the current box we are in matches the current box in loop
-
-      if (box.boxId === content.boxId) {
-        //If its the title element
-        const updatedNotes = box.content.filter((note) => {
-          if (note.noteId === content.noteId) {
-            return;
-          } else {
-            return note;
-          }
-        });
-        box.content = updatedNotes;
-
-        //Build Id of notes
-      }
-      return box;
-    });
-
-    localStorage.setItem("StorageBoxes", JSON.stringify(updatedArray));
-    unRender(content.noteId);
+    unRender(note.noteId);
   };
 
-  //Formats the editable p tag so it matches the acutal p tags
-  const buildEditorTxt = () => {
-    setEditorElement(<div key={content.noteId}>{textState}</div>);
+  useEffect(() => {
+    //Init Header or Text for note box
+    switch (note.type) {
+      case "text":
+        editorClass.current = NoteTextCSS.editingTextarea;
+        break;
+      case "heading":
+        editorClass.current = NoteTextCSS.editingHeading;
+        break;
+      case "title":
+        editorClass.current = NoteTextCSS.editingHeading;
+        break;
+    }
+    getCompHeight();
+    noteChecker();
+  }, []);
+
+  useEffect(() => {}, [textState]);
+
+  const noteChecker = () => {
+    //switch statement would work better i think
+    switch (note.type) {
+      case "heading":
+        return <Heading ref={noteRef} text={textState} />;
+
+      case "text":
+        return <Text ref={noteRef} text={textState} />;
+
+      case "title":
+        return <Title ref={noteRef} text={textState} />;
+    }
+  };
+
+  //
+  const handleSave = (updatedText) => {
+    setTextState(updatedText);
+    storageFunct.updateNote(note.boxId, note.noteId, updatedText, note.type);
+    if (note.type === "title") {
+      updateTitle(updatedText);
+    }
+    //Get INformation from db
+    // setElementState(<p>{updatedText}</p>);
+  };
+
+  // Handle Item Click For Editing a box
+  const handleClick = async () => {
+    setIsEditingState(true);
+    // editorRef.current.classList = "";
+    if (noteRef.current !== undefined) {
+      noteRef.current.className = NoteTextCSS.hidden;
+    }
+  };
+  //Get the rendered component height so we can send that to size the editor which will then grow accoding to input
+  //The textarea work around bc it doesnt grow to size
+  const getCompHeight = () => {
+    // textAreaRef.current.style.minHeight = `${noteRef.current.clientHeight}px`;
   };
 
   return (
     <>
-      <div onClick={handleClick} className={NoteTextCSS.container}>
-        {contentChecker()}
-
-        <div ref={editorRef}>
-          <p>Editing</p>
-          <div
-            id={`note-${content.noteId}`}
-            ref={textAreaRef}
-            contentEditable={true}
-            suppressContentEditableWarning={true}
-            className={`${editorClass.current}`}
-            onInput={() => {
-              setEditingText(textAreaRef.current.innerText);
-            }}
-          >
-            {editorElement}
-          </div>
-          <br />
-          <div className={NoteTextCSS.btnContainer}>
-            <button
-              className={NoteTextCSS.btn}
-              onMouseDown={(e) => {
-                e.stopPropagation();
-                if (editingText !== textState) {
-                  let answer = window.confirm(
-                    "You didnt save are you sure you want to close the editor without saving??"
-                  );
-                  if (answer) {
-                    editorRef.current.className = NoteTextCSS.hidden;
-                    textRef.current.className = "";
-                    setEditingText(textState);
-                    setEditorHeight(textRef.current.clientHeight);
-                  } else {
-                  }
-                } else {
-                  editorRef.current.className = NoteTextCSS.hidden;
-                  textRef.current.className = "";
-                  setEditorHeight(textRef.current.clientHeight);
-                }
-              }}
-            >
-              Close Editor
-            </button>
-            <button
-              className={NoteTextCSS.btn}
-              onMouseDown={(e) => {
-                e.stopPropagation();
-                handleSave(textAreaRef.current.innerText);
-                if (contentType === "title") {
-                  updateTitle(editingText);
-                }
-              }}
-            >
-              Save
-            </button>
-            {contentType !== "title" && (
-              <button onClick={handleDelete} className={NoteTextCSS.btn}>
-                Delete
-              </button>
-            )}
-          </div>
+      {!isEditingState ? (
+        <div onClick={handleClick} className={NoteTextCSS.container}>
+          {noteChecker()}
         </div>
-      </div>
+      ) : (
+        <Editor
+          type={note.type}
+          text={textState}
+          onClose={() => {
+            setIsEditingState(false);
+          }}
+          onSave={(text) => {
+            handleSave(text);
+          }}
+        />
+      )}
     </>
   );
 }

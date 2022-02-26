@@ -1,4 +1,10 @@
 .container {
+  display: grid;
+  grid-template-rows: 100px 100px;
+  /* grid-template-columns: 100px, 375px; */
+}
+
+.btnContainer {
   margin-top: 20px;
   height: 60px;
   width: 400px;
@@ -16,12 +22,14 @@
   margin: 0 10px 0 0;
   padding: 8px 20px 10px 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  
 }
 
 .btn:hover,
 .btn:active {
   background: rgb(247, 247, 247);
   transform: translateY(3px);
+  /* transition: 100ms none; */
 }
 
 .btnActive {
@@ -33,4 +41,5 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background: rgb(247, 247, 247);
   transform: translateY(3px);
+
 }

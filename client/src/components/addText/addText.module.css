@@ -1,6 +1,6 @@
 .container {
-  width: 80%;
-  height: 40px;
+  width: 72%;
+  height: 50px;
 }
 
 .btn {
@@ -15,7 +15,7 @@
   transform: translateY(3px);
   background: rgb(247, 247, 247);
 }
-.editingTextarea {
+.text {
   line-height: 34px;
   font-size: 17px;
   overflow-y: auto;
@@ -29,7 +29,7 @@
   cursor: text;
 }
 
-.editingHeading {
+.heading {
   cursor: text;
   font-size: 25px;
   font-weight: bold;

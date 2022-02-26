@@ -69,6 +69,7 @@ export default function StorageBoxesContainer() {
 
   return (
     <div className={StorageBoxesContainerCSS.container}>
+      <button onMouseDown={initLocalStorage}>init</button>
       {/* <div className={BoxItemCSS.storageBox}>
         <TestingInitLocalStorage onInit={initLocalStorage} />
       </div> */}
