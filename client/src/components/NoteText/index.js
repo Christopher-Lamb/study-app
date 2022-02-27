@@ -37,8 +37,11 @@ const Editor = React.forwardRef(
       const changeLT = changeAmp.replaceAll("&lt;", "<");
       const changeGT = changeLT.replaceAll("&gt;", ">");
       const changeBr = changeGT.replaceAll("<br>", "\n");
-      const StrArr = changeBr.split(/(?=[\n])|(?<=[\n])/g);
+      const StrArr = changeBr.split(/(\n)/);
+      
       StrArr.pop();
+      StrArr.pop();
+      console.log(StrArr);
       const finalStr = StrArr.join("");
       return finalStr;
     };
@@ -70,7 +73,7 @@ const Editor = React.forwardRef(
           <br />
           <div className={NoteTextCSS.btnContainer}>
             <button
-              className={NoteTextCSS.btn}
+              className={`${NoteTextCSS.btn} ${NoteTextCSS.close}`}
               onMouseDown={(e) => {
                 const edited = innerHtmlFormatter(
                   textareaRef.current.innerHTML
@@ -92,7 +95,7 @@ const Editor = React.forwardRef(
               Close Editor
             </button>
             <button
-              className={NoteTextCSS.btn}
+              className={`${NoteTextCSS.btn} ${NoteTextCSS.save}`}
               onMouseDown={(e) => {
                 const edited = innerHtmlFormatter(
                   textareaRef.current.innerHTML
@@ -108,7 +111,7 @@ const Editor = React.forwardRef(
                 onClick={() => {
                   onDel();
                 }}
-                className={NoteTextCSS.btn}
+                className={`${NoteTextCSS.btn} ${NoteTextCSS.del}`}
               >
                 Delete
               </button>

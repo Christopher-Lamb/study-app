@@ -42,7 +42,8 @@
 
 .btn {
   box-shadow: rgba(0, 0, 0, 0.137) 0px 3px 8px;
-  background: #0c76b1;
+  /* background: #0c76b1; */
+  /* background: #009DDC; */
   animation: gradient 20s ease infinite;
   background-size: 400% 400%;
   color: white;
@@ -51,10 +52,19 @@
   border-radius: 4px;
   padding: 10px 16px;
   margin: 0 5px;
+  user-select: none;
+}
+.del {
+  background: #b4223a;
+}
+.save {
+  background: #5aa786;
+}
+.close {
+  background: #009ddc;
 }
 
 .btn:active {
-  background: #0f8dd2;
   transform: translateY(2px);
 }
 

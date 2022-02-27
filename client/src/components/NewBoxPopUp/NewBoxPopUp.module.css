@@ -2,7 +2,7 @@
   position: absolute;
   height: 84vh;
   width: 100vw;
-  z-index: 2;
+  z-index: 4;
   display: flex;
   justify-items: center;
   justify-content: space-around;
@@ -16,7 +16,7 @@
   background: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: absolute;
-  z-index: 1;
+  z-index: 3;
 }
 
 .container button:hover {

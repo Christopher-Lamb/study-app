@@ -1,20 +1,22 @@
 .container {
   position: absolute;
-  outline: 1px solid black;
-  z-index: 1;
-  top: 34px;
-  left: 58px;
-  background: white;
+  /* outline: 1px solid black; */
+  box-shadow: rgba(0, 0, 0, 0.753) 0px 3px 8px;
+  z-index: 2;
+  top: 25px;
+  left: 38px;
+  background: #CC0000;
   height: 50px;
   width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 8px;
 }
 
 .item {
-  position: relative;
-  font-size: 17px;
-  top: 0px;
-  margin: 0px;
-  top: 50%;
-  transform: translateY(-50%);
-  padding-left: 5px;
+  font-size: 20px;
+  height: auto;
+  margin: 0;
+  color: white;
 }

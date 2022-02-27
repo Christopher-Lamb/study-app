@@ -1,0 +1,18 @@
+.btn {
+  height: 20px;
+  text-align: center;
+  font-family: monospace;
+  font-size: 20px;
+  margin: 0 0px 0 0;
+  padding: 8px 20px 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:active {
+  background: rgb(237, 237, 237);
+  transform: translateY(3px);
+
+  /* transition: 100ms none; */
+}

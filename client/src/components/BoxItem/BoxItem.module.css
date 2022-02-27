@@ -6,7 +6,6 @@
   overflow: hidden;
   margin: 10px;
   border-radius: 3%;
-  transition: 0.2s ease-in-out;
   position: relative;
   padding: 20px;
   background: rgb(253, 253, 253);
@@ -17,7 +16,7 @@
 .storageBox:hover {
   height: 210px;
   width: 210px;
-  transition: 0.2s ease-in-out;
+  /* transition: 0.2s ease-in-out; */
   cursor: pointer;
 }
 
@@ -29,12 +28,17 @@
   top: 0px;
   left: 0px;
   position: absolute !important;
-  transition: 0.2s ease-in-out !important;
+  transition: 0s ease-in-out !important;
   border-radius: 0 !important;
   margin: 0px !important;
   padding-left: 15%;
 }
 
+@media only screen and (max-width: 1200px) {
+  .storageBoxOpen {
+    padding: 0%;
+  }
+}
 .contentContainer {
   width: 99vw;
 }
@@ -62,21 +66,17 @@
 
 .closeBoxBtn {
   padding: 10px 16px;
-  background: #0C76B1;
-  animation: gradient 7s ease infinite;
+  background: #009ddc;
+  box-shadow: rgba(0, 0, 0, 0.753) 0px 3px 8px;
   background-size: 400% 400%;
   color: white;
   border-radius: 4px;
+  position: relative;
+  left: 78%;
+  margin-top: 20px;
+  user-select: none;
 }
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.closeBoxBtn:active {
+  background-color: #0c76b1;
+  transform: translateY(3px);
 }
