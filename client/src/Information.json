@@ -14,14 +14,9 @@
         "text": "These Items are Headers"
       },
       {
-        "noteId": 921,
-        "type": "text",
-        "text": "1"
-      },
-      {
         "noteId": 2,
         "type": "text",
-        "text": "Items like these are text\n\n\n\n\n\n items. They allow a user to input their information directly into the page so that it is easy on the eyes and looks complete."
+        "text": "Items like these are text items. They allow a user to input their information directly into the page."
       },
       {
         "noteId": 4,
@@ -41,17 +36,37 @@
       {
         "noteId": 7,
         "type": "text",
-        "text": "Every time your mouse passes over an item rendered in the box a black outline will appear indicating which item you are currently on. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
+        "text": "Every time your mouse passes over an item rendered in the box your current item will be highlighted. When clicked the use will be given the opportunity to edit their item. If text is changed and they try to close the editor without saving they will be issued a warning to continue. Common practice will be to save before exiting in order to avoid accidentally not saving information that you have input. The title can be edited but not deleted."
       },
       {
         "noteId": 8,
         "type": "heading",
-        "text": "The Focus Please Read"
+        "text": "Future Features"
       },
       {
         "noteId": 9,
         "type": "text",
-        "text": "It is natural for a beta tester to want to give their own input into what they think that app should look like or what features should be added, but there are a lot of features that are on the way and your ideas won't be considered until the app is in its more complete form, so thank you and please save all ideas for a later date. :* I also did not proof read these messages so any advice on these sentences hold little merit."
+        "text": "1. Numbered/bulleted lists should be added"
+      },
+      {
+        "noteId": 11,
+        "type": "text",
+        "text": "2. More reliable way of saving user information\nRight now all information is stored in the browser and can be easily/mistakenly deleted"
+      },
+      {
+        "noteId": 12,
+        "type": "text",
+        "text": "3. Customizable fonts colors and backgrounds"
+      },
+      {
+        "noteId": 13,
+        "type": "text",
+        "text": "4. A way to export Notes created into pdfs so that they can be easily transfered to word documents or google docs type apps"
+      },
+      {
+        "noteId": 13,
+        "type": "text",
+        "text": "5. More stops to prevent accidental deletion of information"
       }
     ]
   }

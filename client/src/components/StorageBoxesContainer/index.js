@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import NewBoxPopUp from "../NewBoxPopUp";
 import StorageBoxesContainerCSS from "./StorageBoxesContainer.module.css";
 import BoxItemCSS from "../BoxItem/BoxItem.module.css";
@@ -13,14 +13,15 @@ export default function StorageBoxesContainer() {
   const [boxesState, setBoxesState] = useState([]);
   const [boxesComponentState, setBoxesComponentState] = useState([]);
   const [renderAddNewPopUp, setRenderAddNewPopUp] = useState(false);
+  const demoRendered = useRef(false);
 
   useEffect(() => {
     setStorageBoxes();
   }, []);
 
-  useEffect(() => {
-    getComponents();
-  }, [boxesState]);
+  // useEffect(() => {
+  //   getComponents();
+  // }, [boxesState]);
 
   const initLocalStorage = () => {
     storageFunct.initDemo();
@@ -28,15 +29,26 @@ export default function StorageBoxesContainer() {
   };
 
   const getComponents = () => {
-    if (boxesState !== null) {
+    console.log(boxesState);
+    const local = storageFunct.getAllStorage();
+    console.log(local.length);
+    let ReactComponents = [];
+    if (local.length !== 0) {
       const components = boxesState.map((box, i) => {
         return (
           <BoxItem key={box.boxId} content={box} deleteBox={handleBoxDelete} />
         );
       });
-
-      setBoxesComponentState(components);
+      ReactComponents = components;
+      // setBoxesComponentState(components);
+    } else {
+      //If local = 0
+      if (demoRendered.current === false) {
+        demoRendered.current = true;
+        initLocalStorage();
+      }
     }
+    return ReactComponents;
   };
   // const addStorageBoxToContainer
   const handleAddStorageBtnClick = () => {
@@ -49,9 +61,8 @@ export default function StorageBoxesContainer() {
   // Update Information Boxes State and local Storage
   const setStorageBoxes = () => {
     const array = storageFunct.getAllStorage();
-
     setBoxesState(array);
-    getComponents();
+    // getComponents();
   };
 
   //Clear LocalStorage
@@ -69,10 +80,6 @@ export default function StorageBoxesContainer() {
 
   return (
     <div className={StorageBoxesContainerCSS.container}>
-      <button onMouseDown={initLocalStorage}>init</button>
-      {/* <div className={BoxItemCSS.storageBox}>
-        <TestingInitLocalStorage onInit={initLocalStorage} />
-      </div> */}
       {/* Add Storage Box */}
       <AddBox onClick={handleAddStorageBtnClick} />
       {renderAddNewPopUp && (
@@ -85,7 +92,7 @@ export default function StorageBoxesContainer() {
         />
       )}
       {/*Displays ALl the Stored Boxes ^^^*/}
-      {boxesComponentState}
+      {getComponents()}
     </div>
   );
 }
