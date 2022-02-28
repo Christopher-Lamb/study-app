@@ -1,13 +1,13 @@
 .container {
-  display: grid;
-  grid-template-rows: 100px 100px;
+  display: flex;
+  flex-direction: column;
   margin-left: 20px;
+  margin-bottom: 50px;
   /* grid-template-columns: 100px, 375px; */
 }
 
 .btnContainer {
   margin-top: 20px;
-
   height: 60px;
   width: 400px;
   background: white;
@@ -24,6 +24,7 @@
   margin: 0 10px 0 0;
   padding: 8px 20px 10px 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  
 }
 
 .btn:hover,

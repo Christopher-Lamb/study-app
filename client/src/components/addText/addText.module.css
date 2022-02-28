@@ -1,6 +1,7 @@
 .container {
   width: 72%;
   height: 50px;
+  height: fit-content;
 }
 
 .btn {
@@ -9,11 +10,15 @@
   margin: 10px 0px 0px 0px;
   padding: 8px 20px 10px 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #5aa786;
+  color: white;
+  border-radius: 3px;
 }
-.btn:hover,
-.btn:active {
+.btn:hover {
   transform: translateY(3px);
-  background: rgb(247, 247, 247);
+}
+.btn:active {
+  background: #67bd97;
 }
 .text {
   line-height: 34px;

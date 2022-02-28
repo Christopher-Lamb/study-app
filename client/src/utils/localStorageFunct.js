@@ -65,7 +65,7 @@ const storageFunct = {
     return updatedStorageBoxes;
   },
   updateBox: function (boxid) {
-    console.log();
+    ();
   },
   addNote: function (type, text, boxId) {
     //type of note
@@ -74,9 +74,9 @@ const storageFunct = {
     // what box to add it to
     //store type and text in a object thats going to be sent to the dom and the DB
 
-    // console.log("file", boxId);
+    // ("file", boxId);
     const storageBoxes = getLocal();
-    // console.log(storageBoxes);
+    // (storageBoxes);
     //Loop through boxes to find box we are looking for
     const updatedStorageBoxes = storageBoxes.map((box) => {
       if (boxId === box.boxId) {
@@ -93,7 +93,7 @@ const storageFunct = {
     });
     setLocal(updatedStorageBoxes);
     //Return Unique num
-    console.log(id);
+    (id);
     return id;
   },
   delNote: function (boxId, noteId) {

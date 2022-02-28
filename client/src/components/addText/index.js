@@ -24,7 +24,7 @@ export default function AddText({ id, onSave, type, closeBtn }) {
   //Click
   const handleClick = () => {
     onSave({ type: type, text: textAreaRef.current.innerText });
-    console.log(textAreaRef);
+    textAreaRef;
     textAreaRef.current.textContent = "";
   };
   return (

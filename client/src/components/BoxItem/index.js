@@ -40,7 +40,7 @@ export default function BoxItem({ content, deleteBox }) {
       content.boxId
     );
 
-    console.log(boxState);
+    boxState;
     const newContentArray = boxState.notes;
     newContentArray.push({
       noteId: newId,

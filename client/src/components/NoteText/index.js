@@ -30,18 +30,27 @@ const Editor = React.forwardRef(
       //Replace every /p wiith except the last one
       const noDiv = htmlString.replaceAll("<div>", "");
       const noDivSlash = noDiv.replaceAll("</div>", "");
-      const noP = noDivSlash.replaceAll("<p>", "");
-      const noPSlash = noP.replaceAll("</p>", "\n");
+      const noI = noDivSlash.replaceAll("<i>", "");
+      const noISlash = noI.replaceAll("</i>", "");
+      const noB = noISlash.replaceAll("<b>", "");
+      const noBSlash = noB.replaceAll("</b>", "");
+      const noU = noBSlash.replaceAll("<u>", "");
+      const noUSlash = noU.replaceAll("</u>", "");
+      const noP = noUSlash.replaceAll("<p>", "");
+      const noSpanSplit = noP.split(/<span.*?>/);
+      const noSpanJoin = noSpanSplit.join("");
+      const noSpanSlash = noSpanJoin.replaceAll("</span>", "");
+      const noPSlash = noSpanSlash.replaceAll("</p>", "\n");
       const changeSpace = noPSlash.replaceAll("&nbsp;", " ");
       const changeAmp = changeSpace.replaceAll("&amp;", "&");
       const changeLT = changeAmp.replaceAll("&lt;", "<");
       const changeGT = changeLT.replaceAll("&gt;", ">");
       const changeBr = changeGT.replaceAll("<br>", "\n");
       const StrArr = changeBr.split(/(\n)/);
-      
+
       StrArr.pop();
       StrArr.pop();
-      console.log(StrArr);
+      // (StrArr);
       const finalStr = StrArr.join("");
       return finalStr;
     };
@@ -53,6 +62,9 @@ const Editor = React.forwardRef(
         if (element === "") {
           return <br key={i} />;
         }
+
+        // const iSplitEl = bSplitEl.split(/(<i>.*?<\/i>)/);
+        // ("newEl", iSplitEl);
         return <p key={i}>{element}</p>;
       });
 
